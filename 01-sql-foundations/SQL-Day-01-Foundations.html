@@ -1,0 +1,1341 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Day 1 data, database and SQL foundations: data, RDBMS, SQL, interview vocabulary and a first SELECT."><title>Data & SQL Foundations | SQL Mastery Notebook</title><style>:root{--ink:#243b54;--blue:#2167aa;--navy:#153c62;--teal:#14817f;--muted:#64788d;--line:#dce6f1;--paper:#fff;--wash:#f2f6fc}*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:24px}body{margin:0;background:var(--wash);color:var(--ink);font:16px/1.75 system-ui,Arial,sans-serif}a{color:var(--blue)}button,input{font:inherit}button,a,input,summary{touch-action:manipulation}button{cursor:pointer}button:disabled{opacity:.45;cursor:default}:focus-visible{outline:3px solid #ecaa36;outline-offset:4px}.skip-link{position:absolute;left:16px;top:-80px;background:white;padding:10px 18px;z-index:99}.skip-link:focus{top:10px}.hero{position:relative;overflow:hidden;padding:56px max(24px,calc((100vw - 1240px)/2));background:linear-gradient(120deg,#112951,#21649b 63%,#14817f);color:white}.hero-inner{position:relative;z-index:1;max-width:880px}.eyebrow{font-size:12px;letter-spacing:2px;color:#bde8ff;font-weight:700}.eyebrow span{color:#ebf7ff;opacity:.75}.hero h1{font-size:clamp(35px,5vw,58px);line-height:1.12;letter-spacing:-.04em;max-width:950px;margin:22px 0}.hero p{max-width:760px;color:#d9eaf8;font-size:17px}.tags,.hero-toolbar{display:flex;gap:10px;flex-wrap:wrap}.tags span{padding:5px 13px;border:1px solid #ffffff50;border-radius:30px;font-size:12px}.hero-toolbar{margin-top:25px}.hero-toolbar button,.hero-toolbar a{padding:10px 16px;background:#ffffff15;color:white;border:1px solid #ffffff60;border-radius:8px;text-decoration:none;font:inherit;font-size:13px;cursor:pointer}.hero-orbit{position:absolute;right:6%;top:70px;opacity:.14;transform:rotate(-13deg);display:grid;justify-items:center}.orbit-cell{border:2px solid white;border-radius:18px;padding:10px 35px;font-weight:bold;font-size:25px}.orbit-line{height:20px;border-left:2px dashed white}.layout{display:grid;grid-template-columns:250px minmax(0,1fr);gap:28px;max-width:1300px;margin:35px auto;padding:0 24px}.sidebar{position:sticky;top:20px;align-self:start;background:white;border:1px solid var(--line);border-radius:16px;padding:20px;max-height:calc(100vh - 40px);overflow:auto;font-size:13px}.nav-title{font-size:10px;letter-spacing:1.6px;font-weight:800;color:#275580;margin-bottom:15px}.search-label{display:block;font-size:11px;margin:10px 0 4px;color:var(--muted)}#topic-search{width:100%;padding:8px 10px;border:1px solid var(--line);border-radius:7px;font-size:12px}nav{margin-top:15px}nav a{display:flex;gap:10px;text-decoration:none;padding:7px 5px;line-height:1.4;color:#355776;border-radius:6px;font-size:12px}nav a>span{font-size:10px;color:#7191b1;min-width:18px;margin-top:2px}nav a:hover,nav a.active{background:#edf5ff;color:#165f95}.progress-card{margin-top:20px;border-top:1px solid var(--line);padding-top:18px}.progress-card>span{font-size:9px;font-weight:bold;letter-spacing:1px;color:var(--muted)}.progress-card strong{display:block;font-size:13px}.progress-card p{font-size:11px;line-height:1.4;color:var(--muted)}progress{width:100%;height:7px;accent-color:var(--teal)}.progress-card button{margin-top:8px;font-size:11px;color:#466683;border:1px solid var(--line);background:white;border-radius:5px;padding:5px 9px}main{min-width:0}.topic{background:white;border:1px solid var(--line);border-radius:18px;padding:32px;margin-bottom:24px;box-shadow:0 8px 24px #1b477405}.section-head{display:flex;gap:15px;align-items:center;border-bottom:1px solid #e8eef6;padding-bottom:20px;margin-bottom:23px}.section-number{width:44px;height:44px;flex:0 0 44px;display:grid;place-items:center;border-radius:13px;background:linear-gradient(135deg,#edf5ff,#e8f5f2);color:#286d9f;font-size:15px;font-weight:bold}.section-kicker{font-size:9px;color:#7893aa;font-weight:700;letter-spacing:1.4px}h2{color:var(--navy);font-size:27px;line-height:1.25;letter-spacing:-.025em;margin:4px 0 0}h3{color:#275580;font-size:20px;line-height:1.4;margin:27px 0 13px}p{margin:12px 0 16px}table{width:100%;border-collapse:collapse;font-size:14px;margin:20px 0}th{background:#eaf2ff;color:#245583;text-align:left}th,td{padding:12px;border-bottom:1px solid var(--line);vertical-align:top}tbody tr:nth-child(even){background:#f6f9fc}.table-scroll{overflow:auto;max-width:100%}table code{font-size:.87em}p code,li code,td code{font-family:ui-monospace,'DejaVu Sans Mono',monospace;color:#206393;background:#edf3fb;border-radius:4px;padding:2px 4px;font-size:.9em}.code-panel{background:#14273f;color:#dfebfa;border-radius:12px;margin:20px 0;overflow:hidden}.code-top{display:flex;justify-content:space-between;align-items:center;padding:10px 15px;border-bottom:1px solid #d4e2ff17;font-size:10px;letter-spacing:1.3px;text-transform:uppercase;color:#a7bfd9}.copy-code{background:#ffffff09;border:1px solid #ffffff30;color:#dceafb;border-radius:5px;padding:3px 10px;font-size:11px;letter-spacing:0;text-transform:none}.code-panel pre{padding:18px 20px;font:14px/1.65 ui-monospace,'DejaVu Sans Mono',monospace;margin:0;tab-size:4;overflow:auto}.kw{color:#8bcfff}.str{color:#bae8a8}.num{color:#ffd198}.com{color:#aab9ce}.callout{background:#edf5ff;border-left:4px solid #438cc5;padding:17px 20px;margin:22px 0;border-radius:0 12px 12px 0}.callout.practice{background:#ecf8f0;border-color:#389b70}.callout.warning{background:#fff4ed;border-color:#da8648}.callout.interview{background:#fff6e5;border-color:#dba143}.callout-label{display:flex;align-items:center;gap:8px;font-size:10px;text-transform:uppercase;letter-spacing:1.2px;color:#31719f;font-weight:800;flex-wrap:wrap}.callout-label .label-title{font-size:13px;text-transform:none;letter-spacing:0;color:#244560}.callout-dot{width:6px;height:6px;background:currentColor;border-radius:50%}.callout p{margin:8px 0 0}.callout.practice .callout-label{color:#318060}.callout.warning .callout-label{color:#b87738}.diagram{margin:24px 0}.diagram svg{width:100%;height:auto;display:block;border-radius:12px}.diagram figcaption{font-size:11px;line-height:1.5;color:#64788d;margin-top:8px}.answer{border:1px solid var(--line);border-radius:10px;margin:15px 0;overflow:hidden}.answer summary{font-weight:650;color:#265784;cursor:pointer;padding:15px 18px;list-style:none;display:flex;gap:10px;align-items:baseline;font-size:14px}.answer summary::-webkit-details-marker{display:none}.answer-icon{color:#458bb3;font-size:18px;min-width:12px}.answer[open] .answer-icon{transform:rotate(45deg)}.answer[open] summary{background:#f3f8fe;border-bottom:1px solid #e5edf6}.answer-body{padding:0 18px 4px;font-size:14px}.section-end{display:flex;justify-content:space-between;gap:12px;border-top:1px solid #edf1f7;padding-top:15px;margin-top:27px;font-size:10px;color:#8195a9}.section-end a{text-decoration:none}.check-row{display:flex;align-items:baseline;gap:10px;padding:10px 0;border-bottom:1px solid #edf1f7;line-height:1.5}.check-row input{accent-color:#217fa0;flex:0 0 auto}.check-row:has(input:checked){color:#53806b}.check-row:has(input:checked)>span{text-decoration:line-through;text-decoration-color:#d1e1d9}.interactive-lab,.walkthrough{margin:24px 0;padding:23px;border:1px solid #cae2ef;border-radius:13px;background:linear-gradient(145deg,#f4faff,#f0faf6)}.lab-eyebrow{font-size:9px;letter-spacing:1.2px;font-weight:bold;color:#38839d}.interactive-lab h3,.walkthrough h3{margin-top:8px}.interactive-lab p{font-size:13px}.interactive-lab fieldset{border:1px solid #cce0ed;border-radius:8px;margin:16px 0;padding:12px;font-size:13px}.interactive-lab legend{padding:0 7px;color:#437392;font-size:11px}.interactive-lab fieldset label{display:inline-flex;align-items:center;gap:4px;margin:3px 12px 3px 0}.interactive-lab input{accent-color:#247c94}.demo-query{display:flex;align-items:center;gap:12px;flex-wrap:wrap;background:#14273f;color:white;padding:13px;border-radius:8px}.demo-query code{white-space:pre-wrap;font:12px/1.5 ui-monospace,monospace}.demo-query button,.phase-controls button{padding:7px 13px;border:1px solid #bed7e9;border-radius:6px;background:white;color:#235b7d;font-size:12px}#demo-status{margin-top:12px;font-size:12px;color:#386577}.interactive-lab table{font-size:13px}.null-value{font-size:11px;font-weight:700;color:#8c718f;background:#f2edf5;border-radius:4px;padding:2px 5px}.small{font-size:11px!important;color:#64788d}.phase-buttons{display:flex;gap:7px;flex-wrap:wrap;margin:15px 0}.phase-buttons button{border:1px solid #cee0ee;background:white;border-radius:7px;color:#3c6a86;padding:7px 10px;font-size:11px}.phase-buttons button span{display:inline-grid;place-items:center;width:17px;height:17px;background:#edf4fa;border-radius:50%;margin-right:6px;font-size:9px}.phase-buttons button[aria-pressed=true]{color:white;border-color:#21649b;background:#21649b}.phase-buttons button[aria-pressed=true] span{background:#ffffff30}#phase-detail{font-size:13px;min-height:72px}.phase-controls{display:flex;gap:8px}footer{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;padding:25px;color:#667b91;font-size:12px}footer strong{color:#385c7b}[hidden]{display:none!important}@media(max-width:900px){.layout{display:block;padding:0 18px}.sidebar{position:static;max-height:none;margin-bottom:24px}.sidebar nav{display:grid;grid-template-columns:1fr 1fr;gap:4px}.topic{padding:24px}.hero{padding:40px 24px}.hero-orbit{display:none}}@media(max-width:550px){.topic{padding:22px 18px}.section-number{width:35px;height:35px;flex-basis:35px;font-size:12px;border-radius:10px}h2{font-size:23px}.section-head{gap:10px}.sidebar nav{grid-template-columns:1fr}.section-end{display:block}.section-end a{display:block;margin-top:5px}.interactive-lab,.walkthrough{padding:17px}.hero-toolbar button,.hero-toolbar a{padding:8px 11px}table{font-size:12px}th,td{padding:9px}.code-panel pre{font-size:12px;padding:15px}.hero h1{font-size:36px}}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}@page{size:A4;margin:15mm}@media print{body{background:white;font-size:10pt}.sidebar,.hero-toolbar,.hero-orbit,.section-end,.copy-code,.interactive-lab,.walkthrough{display:none!important}.hero{padding:20px}.hero h1{font-size:30pt}.layout{display:block;padding:0;margin:0}.topic{border:0;border-radius:0;padding:15px 0;box-shadow:none}.section-head{break-after:avoid}h2,h3{break-after:avoid}.diagram,.callout,tr{break-inside:avoid}thead{display:table-header-group}.answer summary{background:#f3f8fe}.answer-body{display:block}.answer{break-inside:avoid}pre{white-space:pre-wrap;overflow-wrap:anywhere}.section-kicker{font-size:7pt}.diagram figcaption{font-size:8pt}.hero,.callout,th{print-color-adjust:exact;-webkit-print-color-adjust:exact}footer{display:none}}
+
+.phase-buttons button[aria-selected=true]{color:white;border-color:#21649b;background:#21649b}.data-explorer #data-form-panel p{font-size:13px}.data-explorer pre{white-space:pre-wrap;overflow-wrap:anywhere}
+
+li:has(.check-row){list-style:none}ul:has(.check-row){padding-left:0}
+
+.recall-question{font-size:1.25rem;font-weight:700;color:#123454}.interactive-lab button:focus-visible{outline:3px solid #c28c1c;outline-offset:3px}
+</style></head><body><a class="skip-link" href="#main">Skip to notes</a><header class="hero" id="top"><div class="hero-inner"><div class="eyebrow">SQL MASTERY NOTEBOOK <span>/ DAY 01</span></div><h1>Data & SQL<br>Foundations</h1><p>Start with data and context. Follow one customer-and-orders example through quality, databases, applications, and your first SELECT.</p><div class="tags"><span>SQL Server / T-SQL</span><span>Start from zero</span><span>Visual explanations</span><span>Venkata Siva</span></div><div class="hero-toolbar"><button id="toggle-answers" type="button">Show all answers</button><button id="print-notes" type="button">Print notes</button><a href="#projection-lab">Try the SELECT demo ↗</a></div></div><div class="hero-orbit" aria-hidden="true"><div class="orbit-cell">DATA</div><div class="orbit-line"></div><div class="orbit-cell">SQL</div><div class="orbit-line"></div><div class="orbit-cell">RESULT</div></div></header><div class="layout"><aside class="sidebar"><div class="nav-title">YOUR LEARNING PATH</div><label class="search-label" for="topic-search">Find a topic</label><input id="topic-search" type="search" placeholder="e.g. NULL, OLTP, SELECT"><nav aria-label="Chapter sections"><a href="#topic-01" data-topic-link><span>01</span>Your Day 1 learning path</a><a href="#topic-02" data-topic-link><span>02</span>Data becomes useful when it has meaning</a><a href="#topic-03" data-topic-link><span>03</span>Three forms of data, with everyday examples</a><a href="#topic-04" data-topic-link><span>04</span>Entities, attributes and identifiers</a><a href="#topic-05" data-topic-link><span>05</span>Grain: say what one row represents</a><a href="#topic-06" data-topic-link><span>06</span>Metadata tells you how to read a value</a><a href="#topic-07" data-topic-link><span>07</span>Good structure does not guarantee good data</a><a href="#topic-08" data-topic-link><span>08</span>NULL, zero and empty text are different</a><a href="#topic-09" data-topic-link><span>09</span>Where data comes from and where it goes</a><a href="#topic-10" data-topic-link><span>10</span>Why files alone can become difficult</a><a href="#topic-11" data-topic-link><span>11</span>Database, DBMS, RDBMS and SQL</a><a href="#topic-12" data-topic-link><span>12</span>Why SQL and relational databases emerged</a><a href="#topic-13" data-topic-link><span>13</span>Read a table across and down</a><a href="#topic-14" data-topic-link><span>14</span>Data types: represent the right kind of value</a><a href="#topic-15" data-topic-link><span>15</span>Relationships connect facts; constraints protect rules</a><a href="#topic-16" data-topic-link><span>16</span>Transactions and OLTP: daily business work</a><a href="#topic-17" data-topic-link><span>17</span>OLTP and analytics answer different questions</a><a href="#topic-18" data-topic-link><span>18</span>SQL describes the work you want</a><a href="#topic-19" data-topic-link><span>19</span>SQL Server is the engine; SSMS is the client</a><a href="#topic-20" data-topic-link><span>20</span>How applications and people use the database</a><a href="#topic-21" data-topic-link><span>21</span>The engine uses memory and persistent storage</a><a href="#topic-22" data-topic-link><span>22</span>What happens when SELECT executes?</a><a href="#topic-23" data-topic-link><span>23</span>Written SQL and its meaning are different</a><a href="#topic-24" data-topic-link><span>24</span>Prepare the practice table once</a><a href="#topic-25" data-topic-link><span>25</span>Run your first SELECT and read the result</a><a href="#topic-26" data-topic-link><span>26</span>Choose columns without changing the table</a><a href="#topic-27" data-topic-link><span>27</span>First-day habits and common mistakes</a><a href="#topic-28" data-topic-link><span>28</span>The memory map: connect roles before terms</a><a href="#topic-29" data-topic-link><span>29</span>Interview room: data and database foundations</a><a href="#topic-30" data-topic-link><span>30</span>Interview room: SQL and query behavior</a><a href="#topic-31" data-topic-link><span>31</span>Technical vocabulary in one glance</a><a href="#topic-32" data-topic-link><span>32</span>Sources and reading beyond Day 1</a><a href="#topic-33" data-topic-link><span>33</span>Final practice: explain, predict and write</a><a href="#topic-34" data-topic-link><span>34</span>Answer guide: data and database reasoning</a><a href="#topic-35" data-topic-link><span>35</span>Answer guide: your first SQL queries</a><a href="#topic-36" data-topic-link><span>36</span>Your Day 1 completion checklist</a></nav><div class="progress-card"><span>CHECKLIST PROGRESS</span><strong id="progress-text">0 completed</strong><progress id="study-progress" value="0" max="1"></progress><button id="reset-progress" type="button">Reset checklist</button><p>Saved in this browser when storage is available.</p></div></aside><main id="main" tabindex="-1"><section id="topic-01" class="topic" data-title="Your Day 1 learning path"><div class="section-head"><span class="section-number">01</span><div><span class="section-kicker">DAY 01 / LEARN IN ORDER</span><h2>Your Day 1 learning path</h2></div></div><p><strong>Today’s goal:</strong> Understand the data, understand the database, and run a SELECT you can explain. We use one online store throughout.</p>
+<table>
+<thead>
+<tr>
+<th>Step</th>
+<th>Main question</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1. Data</td>
+<td>What facts do we record, and what do they mean?</td>
+</tr>
+<tr>
+<td>2. Databases</td>
+<td>Why keep related facts in a managed system?</td>
+</tr>
+<tr>
+<td>3. Relational structure</td>
+<td>How do tables, types and relationships organize them?</td>
+</tr>
+<tr>
+<td>4. SQL and tools</td>
+<td>How do people and applications request data?</td>
+</tr>
+<tr>
+<td>5. Query journey</td>
+<td>What does the database engine do with the request?</td>
+</tr>
+<tr>
+<td>6. First SELECT</td>
+<td>Can I predict, run and explain the result?</td>
+</tr>
+</tbody></table>
+<aside class="callout concept"><div class="callout-label"><span class="callout-dot"></span>concept<span class="label-title">The reading pattern</span></div><p>Each lesson gives you a plain definition, a concrete example and a memory cue. Technical words appear next to their meaning. Learn the idea first; use the word once you can explain it.</p>
+</aside>
+
+<p><strong>Read in blocks:</strong> Begin with the data lessons. Take a break before databases. Finish with the SQL lab, interview explanations and independent practice. Allow roughly 3–4 hours with practice, or split the reading across sessions.</p>
+<p><strong>Today’s SQL focus:</strong> basic SELECT. Relationships and transactions are introductions; learn their purpose first. Day 2 adds filtering through IS NULL and IS NOT NULL.</p>
+<p><strong>Lab:</strong> The examples use Microsoft SQL Server / T-SQL. You need an existing SQL Server connection to execute them. The HTML activities are local teaching simulations.</p>
+<div class="section-end"><span>Pause · explain the idea in your own words</span><a href="#top">Back to top ↑</a></div></section>
+<section id="topic-02" class="topic" data-title="Data becomes useful when it has meaning"><div class="section-head"><span class="section-number">02</span><div><span class="section-kicker">DAY 01 / LEARN IN ORDER</span><h2>Data becomes useful when it has meaning</h2></div></div><p><strong>Data</strong> is recorded facts: a name, a price, a date, a quantity. <strong>Information</strong> is the meaning we obtain when those facts answer a question.</p>
+<p><figure class="diagram" data-image="data-information.svg"><svg xmlns="http://www.w3.org/2000/svg" width="800" viewBox="0 0 800 290" role="img" aria-label="Data becomes information when a question gives context"><rect width="800" height="290" rx="14" fill="#f1f5fa"/><line x1="245" y1="65" x2="290" y2="65" stroke="#637c9d" stroke-width="2"/><polyline points="282.0,60.0 290,65 282.0,70.0" fill="none" stroke="#637c9d" stroke-width="2"/><line x1="510" y1="65" x2="555" y2="65" stroke="#637c9d" stroke-width="2"/><polyline points="547.0,60.0 555,65 547.0,70.0" fill="none" stroke="#637c9d" stroke-width="2"/><rect x="25" y="25" width="220" height="83" rx="10" fill="#e3ecff"/><text x="135.0" y="50" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="#172b49">DATA</text><text x="135.0" y="71" text-anchor="middle" font-family="Arial" font-size="13" font-weight="normal" fill="#172b49">Asha | Order 101 | 500</text><text x="135.0" y="92" text-anchor="middle" font-family="Arial" font-size="13" font-weight="normal" fill="#172b49">Recorded facts</text><rect x="290" y="25" width="220" height="83" rx="10" fill="#fff1cf"/><text x="400.0" y="50" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="#172b49">QUESTION</text><text x="400.0" y="71" text-anchor="middle" font-family="Arial" font-size="13" font-weight="normal" fill="#172b49">Which customer</text><text x="400.0" y="92" text-anchor="middle" font-family="Arial" font-size="13" font-weight="normal" fill="#172b49">placed this order?</text><rect x="555" y="25" width="220" height="83" rx="10" fill="#d9f2ed"/><text x="665.0" y="50" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="#172b49">INFORMATION</text><text x="665.0" y="71" text-anchor="middle" font-family="Arial" font-size="13" font-weight="normal" fill="#172b49">Asha placed Order 101</text><text x="665.0" y="92" text-anchor="middle" font-family="Arial" font-size="13" font-weight="normal" fill="#172b49">for 500 currency units</text><text x="30" y="174" font-family="Arial" font-size="13" fill="#53647b">DATABASE: organized collection of related data.</text><text x="30" y="209" font-family="Arial" font-size="13" fill="#53647b">DBMS: software that stores, retrieves and manages that data.</text><text x="30" y="244" font-family="Arial" font-size="13" fill="#53647b">SQL: language used to ask for data or define changes in a relational system.</text></svg><figcaption>Data plus context answers a business question.</figcaption></figure></p>
+<table>
+<thead>
+<tr>
+<th>Recorded fact</th>
+<th>Context</th>
+<th>What we learn</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>500</td>
+<td>Order 101 total, in INR</td>
+<td>Order 101 costs INR 500</td>
+</tr>
+<tr>
+<td>Hyderabad</td>
+<td>Asha’s current city</td>
+<td>Asha’s profile lists Hyderabad</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Quantity on an order line</td>
+<td>Two units were ordered</td>
+</tr>
+</tbody></table>
+<p>The same number can mean different things. “500” might be an amount, a quantity or an identifier. The field name, units and business definition tell us how to interpret it.</p>
+<p>Our store records customers, products and orders. A <strong>database</strong> is an organized collection of related data and objects used to manage those facts.</p>
+<aside class="callout concept"><div class="callout-label"><span class="callout-dot"></span>concept<span class="label-title">Memory cue</span></div><p>Data is the recorded fact. Context tells you what it means. Information answers a question.</p>
+</aside>
+
+<p><strong>Interview phrase:</strong> “Data becomes meaningful when I know its context, such as units, time and what the record represents.”</p>
+<div class="section-end"><span>Pause · explain the idea in your own words</span><a href="#top">Back to top ↑</a></div></section>
+<section id="topic-03" class="topic" data-title="Three forms of data, with everyday examples"><div class="section-head"><span class="section-number">03</span><div><span class="section-kicker">DAY 01 / LEARN IN ORDER</span><h2>Three forms of data, with everyday examples</h2></div></div><p>These forms describe <strong>how the main content is organized</strong>. They do not describe whether a value is text or a number.</p>
+<p><figure class="diagram" data-image="data-spectrum.svg"><svg xmlns="http://www.w3.org/2000/svg" width="800" viewBox="0 0 800 225" role="img" aria-label="Three forms: defined fields, keys and tags, free-form content"><rect width="800" height="225" rx="14" fill="#f1f5fa"/><rect x="25" y="25" width="230" height="110" rx="10" fill="#e3ecff"/><text x="140.0" y="50" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="#172b49">STRUCTURED</text><text x="140.0" y="71" text-anchor="middle" font-family="Arial" font-size="13" font-weight="normal" fill="#172b49">Defined record fields</text><text x="140.0" y="92" text-anchor="middle" font-family="Arial" font-size="13" font-weight="normal" fill="#172b49">Customer rows</text><text x="140.0" y="113" text-anchor="middle" font-family="Arial" font-size="13" font-weight="normal" fill="#172b49">Bank transactions</text><rect x="285" y="25" width="230" height="110" rx="10" fill="#d9f2ed"/><text x="400.0" y="50" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="#172b49">SEMI-STRUCTURED</text><text x="400.0" y="71" text-anchor="middle" font-family="Arial" font-size="13" font-weight="normal" fill="#172b49">Keys and nested values</text><text x="400.0" y="92" text-anchor="middle" font-family="Arial" font-size="13" font-weight="normal" fill="#172b49">JSON order response</text><text x="400.0" y="113" text-anchor="middle" font-family="Arial" font-size="13" font-weight="normal" fill="#172b49">XML invoice</text><rect x="545" y="25" width="230" height="110" rx="10" fill="#fff1cf"/><text x="660.0" y="50" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="#172b49">UNSTRUCTURED</text><text x="660.0" y="71" text-anchor="middle" font-family="Arial" font-size="13" font-weight="normal" fill="#172b49">Free-form main content</text><text x="660.0" y="92" text-anchor="middle" font-family="Arial" font-size="13" font-weight="normal" fill="#172b49">Review text / delivery photo</text><text x="660.0" y="113" text-anchor="middle" font-family="Arial" font-size="13" font-weight="normal" fill="#172b49">Support-call audio</text><text x="30" y="175" font-family="Arial" font-size="13" fill="#53647b">One business produces all three forms; classify the content, not the entire company.</text><text x="30" y="207" font-family="Arial" font-size="13" fill="#53647b">Free-form content can still have structured metadata such as a rating or customer ID.</text></svg><figcaption>Fixed fields, keys and tags, or free-form content: three ways to organize data.</figcaption></figure></p>
+<table>
+<thead>
+<tr>
+<th>Form</th>
+<th>Easy explanation</th>
+<th>More examples</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Structured</td>
+<td>Records follow defined fields</td>
+<td>Bank transaction table; patient appointments; product price list</td>
+</tr>
+<tr>
+<td>Semi-structured</td>
+<td>Keys or tags describe values; records can be nested or flexible</td>
+<td>JSON order response; XML invoice; JSON delivery event</td>
+</tr>
+<tr>
+<td>Unstructured</td>
+<td>Main content is free-form rather than our predefined record fields</td>
+<td>Customer review; scanned prescription image; support-call audio</td>
+</tr>
+</tbody></table>
+<div class="interactive-lab data-explorer"><div class="lab-eyebrow">INTERACTIVE / DATA ORGANIZATION</div><h3>One store, three forms of data</h3><p>Switch the view to compare the record shape and its meaning. These are teaching examples, not database connections.</p><div class="phase-buttons" role="tablist" aria-label="Forms of data"><button id="form-tab-0" type="button" role="tab" aria-controls="data-form-panel" aria-selected="true" tabindex="0" data-form="0">Structured</button><button id="form-tab-1" type="button" role="tab" aria-controls="data-form-panel" aria-selected="false" tabindex="-1" data-form="1">Semi-structured</button><button id="form-tab-2" type="button" role="tab" aria-controls="data-form-panel" aria-selected="false" tabindex="-1" data-form="2">Unstructured</button></div><div id="data-form-panel" role="tabpanel" aria-labelledby="form-tab-0" tabindex="0"></div></div><h3>Structured: predefined record fields</h3>
+<p>A customer table gives every row named columns: CustomerID, CustomerName and City. A consistently defined CSV or spreadsheet can also contain structured data.</p>
+<p><strong>Semi-structured: named keys and nesting</strong></p>
+<div class="code-panel"><div class="code-top"><span>json / example</span><button type="button" class="copy-code" aria-label="Copy code example">Copy</button></div><pre><code>{&quot;customerId&quot;: 1, &quot;name&quot;: &quot;Asha&quot;,
+ &quot;preferences&quot;: {&quot;language&quot;: &quot;English&quot;}}</code></pre></div><p>JSON is self-describing through keys and nesting. Different records can carry different fields; a schema can still validate them.</p>
+<p><strong>Unstructured: free-form main content</strong></p>
+<p>“Good product, but delivery was late” is review text. Its rating and customer ID can be structured fields alongside that text. An image also has a file format and metadata; unstructured does not mean completely without structure.</p>
+<p><strong>Memory cue:</strong> structured = fixed fields; semi-structured = keys or tags; unstructured = free-form main content.</p>
+<div class="section-end"><span>Pause · explain the idea in your own words</span><a href="#top">Back to top ↑</a></div></section>
+<section id="topic-04" class="topic" data-title="Entities, attributes and identifiers"><div class="section-head"><span class="section-number">04</span><div><span class="section-kicker">DAY 01 / LEARN IN ORDER</span><h2>Entities, attributes and identifiers</h2></div></div><p>Before thinking about SQL syntax, identify the things your business records.</p>
+<table>
+<thead>
+<tr>
+<th>Term</th>
+<th>Plain meaning</th>
+<th>Store example</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Entity</td>
+<td>A thing or event we need to describe</td>
+<td>Customer, product, order</td>
+</tr>
+<tr>
+<td>Attribute</td>
+<td>A property of that entity</td>
+<td>Customer name or city</td>
+</tr>
+<tr>
+<td>Identifier</td>
+<td>A value that distinguishes one instance</td>
+<td>CustomerID 1</td>
+</tr>
+</tbody></table>
+<p><figure class="diagram" data-image="entities-map.svg"><svg xmlns="http://www.w3.org/2000/svg" width="800" viewBox="0 0 800 360" role="img" aria-label="One store has customers, orders, order items and products"><rect width="800" height="360" rx="14" fill="#f1f5fa"/><line x1="360" y1="70" x2="440" y2="70" stroke="#637c9d" stroke-width="2"/><polyline points="432.0,65.0 440,70 432.0,75.0" fill="none" stroke="#637c9d" stroke-width="2"/><line x1="600" y1="115" x2="600" y2="200" stroke="#637c9d" stroke-width="2"/><polyline points="605.0,192.0 600,200 595.0,192.0" fill="none" stroke="#637c9d" stroke-width="2"/><line x1="440" y1="245" x2="360" y2="245" stroke="#637c9d" stroke-width="2"/><polyline points="368.0,250.0 360,245 368.0,240.0" fill="none" stroke="#637c9d" stroke-width="2"/><rect x="30" y="25" width="330" height="90" rx="10" fill="#e3ecff"/><text x="195.0" y="50" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="#172b49">CUSTOMER</text><text x="195.0" y="71" text-anchor="middle" font-family="Arial" font-size="13" font-weight="normal" fill="#172b49">CustomerID identifies a customer</text><text x="195.0" y="92" text-anchor="middle" font-family="Arial" font-size="13" font-weight="normal" fill="#172b49">Name and City describe the customer</text><rect x="440" y="25" width="330" height="90" rx="10" fill="#102444"/><text x="605.0" y="50" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="#fff">ORDER</text><text x="605.0" y="71" text-anchor="middle" font-family="Arial" font-size="13" font-weight="normal" fill="#fff">OrderID identifies one order</text><text x="605.0" y="92" text-anchor="middle" font-family="Arial" font-size="13" font-weight="normal" fill="#fff">CustomerID identifies its buyer</text><rect x="440" y="200" width="330" height="90" rx="10" fill="#d9f2ed"/><text x="605.0" y="225" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="#172b49">ORDER ITEM</text><text x="605.0" y="246" text-anchor="middle" font-family="Arial" font-size="13" font-weight="normal" fill="#172b49">One product line within an order</text><text x="605.0" y="267" text-anchor="middle" font-family="Arial" font-size="13" font-weight="normal" fill="#172b49">OrderID + ProductID + Quantity</text><rect x="30" y="200" width="330" height="90" rx="10" fill="#fff1cf"/><text x="195.0" y="225" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="#172b49">PRODUCT</text><text x="195.0" y="246" text-anchor="middle" font-family="Arial" font-size="13" font-weight="normal" fill="#172b49">ProductID identifies a product</text><text x="195.0" y="267" text-anchor="middle" font-family="Arial" font-size="13" font-weight="normal" fill="#172b49">Name and Price describe it</text><text x="30" y="335" font-family="Arial" font-size="13" fill="#53647b">Start with what one record represents. Detailed key and relationship design comes later.</text></svg><figcaption>Customers place orders; each order has product lines.</figcaption></figure></p>
+<p>Asha is one customer. CustomerName and City describe her. CustomerID distinguishes her from another person who might also be called Asha.</p>
+<p>An order is a different entity. It needs its own identifier and facts such as its date and customer reference. An order item represents a product line within that order.</p>
+<aside class="callout concept"><div class="callout-label"><span class="callout-dot"></span>concept<span class="label-title">Memory cue</span></div><p>Entity: what is it? Attribute: what describes it? Identifier: which one is it?</p>
+</aside>
+
+<p>Do not use a name as a unique identifier just because it looks unique in a small sample. Names can repeat and can change.</p>
+<div class="section-end"><span>Pause · explain the idea in your own words</span><a href="#top">Back to top ↑</a></div></section>
+<section id="topic-05" class="topic" data-title="Grain: say what one row represents"><div class="section-head"><span class="section-number">05</span><div><span class="section-kicker">DAY 01 / LEARN IN ORDER</span><h2>Grain: say what one row represents</h2></div></div><p><strong>Grain</strong> means the level of detail represented by one row. State it as a sentence before counting or adding anything.</p>
+<p><figure class="diagram" data-image="grain.svg"><svg xmlns="http://www.w3.org/2000/svg" width="800" viewBox="0 0 800 335" role="img" aria-label="One order is not the same grain as one order item"><rect width="800" height="335" rx="14" fill="#f1f5fa"/><rect x="30" y="25" width="330" height="140" rx="10" fill="#e3ecff"/><text x="195.0" y="50" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="#172b49">ONE ROW PER ORDER</text><text x="195.0" y="71" text-anchor="middle" font-family="Arial" font-size="13" font-weight="normal" fill="#172b49">OrderID | OrderTotal</text><text x="195.0" y="92" text-anchor="middle" font-family="Arial" font-size="13" font-weight="normal" fill="#172b49">101 | 500</text><text x="195.0" y="113" text-anchor="middle" font-family="Arial" font-size="13" font-weight="normal" fill="#172b49">Order 101 is counted once</text><rect x="440" y="25" width="330" height="140" rx="10" fill="#d9f2ed"/><text x="605.0" y="50" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="#172b49">ONE ROW PER ORDER ITEM</text><text x="605.0" y="71" text-anchor="middle" font-family="Arial" font-size="13" font-weight="normal" fill="#172b49">OrderID | Product | LineAmount</text><text x="605.0" y="92" text-anchor="middle" font-family="Arial" font-size="13" font-weight="normal" fill="#172b49">101 | P1 | 300</text><text x="605.0" y="113" text-anchor="middle" font-family="Arial" font-size="13" font-weight="normal" fill="#172b49">101 | P2 | 200</text><text x="30" y="214" font-family="Arial" font-size="13" fill="#53647b">Correct line-level total for Order 101: 300 + 200 = 500.</text><text x="30" y="254" font-family="Arial" font-size="13" fill="#53647b">If the whole order total 500 is copied to both lines and summed: 500 + 500 = 1,000.</text><text x="30" y="294" font-family="Arial" font-size="13" fill="#53647b">The arithmetic is correct, but the meaning is wrong because the grain was mixed.</text></svg><figcaption>One order row is different from two order-item rows.</figcaption></figure></p>
+<p>Order 101 contains a book costing 300 and a pen costing 200.</p>
+<table>
+<thead>
+<tr>
+<th>Dataset</th>
+<th>One row represents</th>
+<th>Rows for this example</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Orders</td>
+<td>One order</td>
+<td>1 row, total 500</td>
+</tr>
+<tr>
+<td>OrderItems</td>
+<td>One product line in an order</td>
+<td>2 rows, amounts 300 and 200</td>
+</tr>
+</tbody></table>
+<p>If you copy the whole-order total 500 onto both item rows and add it, you get 1000. The arithmetic works; the business answer is wrong. Add the line amounts instead: 300 + 200 = 500.</p>
+<aside class="callout concept"><div class="callout-label"><span class="callout-dot"></span>concept<span class="label-title">Memory cue</span></div><p>One row, one meaning. Counting rows only makes sense after you know that meaning.</p>
+</aside>
+
+<p><strong>Interview phrase:</strong> “I confirm the grain before counting, aggregating or joining data to avoid double counting.” You will learn aggregation and joins later.</p>
+<div class="section-end"><span>Pause · explain the idea in your own words</span><a href="#top">Back to top ↑</a></div></section>
+<section id="topic-06" class="topic" data-title="Metadata tells you how to read a value"><div class="section-head"><span class="section-number">06</span><div><span class="section-kicker">DAY 01 / LEARN IN ORDER</span><h2>Metadata tells you how to read a value</h2></div></div><p><strong>Metadata</strong> is information that describes data. It tells you what a field means and how to use it.</p>
+<p><figure class="diagram" data-image="metadata-context.svg"><svg xmlns="http://www.w3.org/2000/svg" width="800" viewBox="0 0 800 285" role="img" aria-label="Metadata gives an amount its meaning"><rect width="800" height="285" rx="14" fill="#f1f5fa"/><line x1="245" y1="70" x2="290" y2="70" stroke="#637c9d" stroke-width="2"/><polyline points="282.0,65.0 290,70 282.0,75.0" fill="none" stroke="#637c9d" stroke-width="2"/><line x1="510" y1="70" x2="555" y2="70" stroke="#637c9d" stroke-width="2"/><polyline points="547.0,65.0 555,70 547.0,75.0" fill="none" stroke="#637c9d" stroke-width="2"/><rect x="25" y="25" width="220" height="90" rx="10" fill="#e3ecff"/><text x="135.0" y="50" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="#172b49">VALUE</text><text x="135.0" y="71" text-anchor="middle" font-family="Arial" font-size="13" font-weight="normal" fill="#172b49">500</text><text x="135.0" y="92" text-anchor="middle" font-family="Arial" font-size="13" font-weight="normal" fill="#172b49">A number on its own</text><rect x="290" y="25" width="220" height="90" rx="10" fill="#102444"/><text x="400.0" y="50" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="#fff">METADATA / CONTEXT</text><text x="400.0" y="71" text-anchor="middle" font-family="Arial" font-size="13" font-weight="normal" fill="#fff">OrderAmount</text><text x="400.0" y="92" text-anchor="middle" font-family="Arial" font-size="13" font-weight="normal" fill="#fff">Currency: INR</text><text x="400.0" y="113" text-anchor="middle" font-family="Arial" font-size="13" font-weight="normal" fill="#fff">OrderID: 101</text><rect x="555" y="25" width="220" height="90" rx="10" fill="#d9f2ed"/><text x="665.0" y="50" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="#172b49">INFORMATION</text><text x="665.0" y="71" text-anchor="middle" font-family="Arial" font-size="13" font-weight="normal" fill="#172b49">Order 101 totals</text><text x="665.0" y="92" text-anchor="middle" font-family="Arial" font-size="13" font-weight="normal" fill="#172b49">INR 500</text><text x="30" y="177" font-family="Arial" font-size="13" fill="#53647b">Technical metadata: column names, types and object definitions.</text><text x="30" y="211" font-family="Arial" font-size="13" fill="#53647b">Business metadata: meaning, units, owner and accepted rules.</text><text x="30" y="245" font-family="Arial" font-size="13" fill="#53647b">Operational metadata: source, collection time and update information.</text></svg><figcaption>The name, unit and record context make 500 meaningful.</figcaption></figure></p>
+<table>
+<thead>
+<tr>
+<th>Description</th>
+<th>What it tells you</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Column name: OrderAmount</td>
+<td>What this number represents</td>
+</tr>
+<tr>
+<td>Currency: INR</td>
+<td>Which unit the amount uses</td>
+</tr>
+<tr>
+<td>Definition: total for one order</td>
+<td>The amount’s business meaning and grain</td>
+</tr>
+<tr>
+<td>Source: checkout system</td>
+<td>Where the value came from</td>
+</tr>
+<tr>
+<td>Updated at: stated time</td>
+<td>How fresh the value is</td>
+</tr>
+</tbody></table>
+<p>A <strong>data dictionary</strong> records agreed field definitions. It can document whether an amount includes tax or how a status is interpreted.</p>
+<p>Time context also matters. Asha may live in Chennai now while an earlier order was delivered to Hyderabad. A current profile and a historical delivery record answer different questions; neither is automatically wrong.</p>
+<p><strong>Memory cue:</strong> a number needs a name, a unit and a purpose.</p>
+<p><strong>Interview phrase:</strong> “Metadata helps me interpret a dataset correctly rather than guessing from its values.”</p>
+<div class="section-end"><span>Pause · explain the idea in your own words</span><a href="#top">Back to top ↑</a></div></section>
+<section id="topic-07" class="topic" data-title="Good structure does not guarantee good data"><div class="section-head"><span class="section-number">07</span><div><span class="section-kicker">DAY 01 / LEARN IN ORDER</span><h2>Good structure does not guarantee good data</h2></div></div><p><strong>Data quality</strong> means whether the recorded data is suitable for the question you want to answer.</p>
+<p><figure class="diagram" data-image="quality.svg"><svg xmlns="http://www.w3.org/2000/svg" width="800" viewBox="0 0 800 310" role="img" aria-label="Valid-looking data can still be inaccurate"><rect width="800" height="310" rx="14" fill="#f1f5fa"/><rect x="30" y="25" width="340" height="130" rx="10" fill="#e3ecff"/><text x="200.0" y="50" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="#172b49">FORM / RULE CHECKS</text><text x="200.0" y="71" text-anchor="middle" font-family="Arial" font-size="13" font-weight="normal" fill="#172b49">City = Chennai</text><text x="200.0" y="92" text-anchor="middle" font-family="Arial" font-size="13" font-weight="normal" fill="#172b49">Known city spelling</text><text x="200.0" y="113" text-anchor="middle" font-family="Arial" font-size="13" font-weight="normal" fill="#172b49">Allowed text length</text><text x="200.0" y="134" text-anchor="middle" font-family="Arial" font-size="13" font-weight="normal" fill="#172b49">Passes basic validation</text><rect x="430" y="25" width="340" height="130" rx="10" fill="#fff1cf"/><text x="600.0" y="50" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="#172b49">REAL-WORLD VERIFICATION</text><text x="600.0" y="71" text-anchor="middle" font-family="Arial" font-size="13" font-weight="normal" fill="#172b49">Customer confirms Hyderabad</text><text x="600.0" y="92" text-anchor="middle" font-family="Arial" font-size="13" font-weight="normal" fill="#172b49">Recorded city is wrong</text><text x="600.0" y="113" text-anchor="middle" font-family="Arial" font-size="13" font-weight="normal" fill="#172b49">A permitted value is not</text><text x="600.0" y="134" text-anchor="middle" font-family="Arial" font-size="13" font-weight="normal" fill="#172b49">proof of factual accuracy</text><text x="30" y="208" font-family="Arial" font-size="13" fill="#53647b">Integrity rules protect what was defined. Quality also asks whether facts are fit for use.</text><text x="30" y="253" font-family="Arial" font-size="13" fill="#53647b">Completeness, validity, consistency, uniqueness and timeliness each ask different questions.</text></svg><figcaption>A correctly formatted city can still be the wrong city for the customer.</figcaption></figure></p>
+<table>
+<thead>
+<tr>
+<th>Quality check</th>
+<th>Question</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Accuracy</td>
+<td>Is the fact correct?</td>
+<td>Does the address match the customer’s address?</td>
+</tr>
+<tr>
+<td>Completeness</td>
+<td>Is a required fact present?</td>
+<td>Is the delivery address recorded?</td>
+</tr>
+<tr>
+<td>Validity</td>
+<td>Does it follow the stated rule?</td>
+<td>Is a quantity within the allowed range?</td>
+</tr>
+<tr>
+<td>Consistency</td>
+<td>Do related records agree?</td>
+<td>Do shipping and billing records agree where required?</td>
+</tr>
+<tr>
+<td>Uniqueness</td>
+<td>Are unintended duplicates present?</td>
+<td>Was one customer created twice?</td>
+</tr>
+<tr>
+<td>Timeliness</td>
+<td>Is it fresh enough?</td>
+<td>Is stock information current enough for checkout?</td>
+</tr>
+</tbody></table>
+<p>Every address field may be filled while the address itself is wrong. That data is complete but inaccurate.</p>
+<p><strong>Integrity rules</strong> enforce defined conditions in the database. They cannot prove every real-world fact. For example, a valid city name can still be wrong for a particular customer.</p>
+<p><strong>Memory cue:</strong> present does not mean correct; correct format does not mean correct fact.</p>
+<div class="section-end"><span>Pause · explain the idea in your own words</span><a href="#top">Back to top ↑</a></div></section>
+<section id="topic-08" class="topic" data-title="NULL, zero and empty text are different"><div class="section-head"><span class="section-number">08</span><div><span class="section-kicker">DAY 01 / LEARN IN ORDER</span><h2>NULL, zero and empty text are different</h2></div></div><p><strong>NULL</strong> marks a value that has not been supplied or is not known. It is not the number zero and not empty text.</p>
+<table>
+<thead>
+<tr>
+<th>Recorded value</th>
+<th>What it means in this example</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Amount: 0</td>
+<td>The recorded amount is known to be zero</td>
+</tr>
+<tr>
+<td>Amount: NULL</td>
+<td>No amount is recorded; do not assume zero</td>
+</tr>
+<tr>
+<td>City: &#39;&#39;</td>
+<td>Recorded text with zero characters</td>
+</tr>
+<tr>
+<td>City: NULL</td>
+<td>No city is recorded</td>
+</tr>
+<tr>
+<td>City: &#39;NULL&#39;</td>
+<td>Literal text containing the letters N U L L</td>
+</tr>
+</tbody></table>
+<p>Meera’s City is NULL in our practice table. It does not mean she lives in a place named NULL or that her city is an empty string.</p>
+<p>A missing value can be unknown, not yet collected or not applicable, depending on the field’s definition. Its exact meaning comes from context.</p>
+<aside class="callout warning"><div class="callout-label"><span class="callout-dot"></span>warning<span class="label-title">Keep missingness meaningful</span></div><p>Do not replace missing values with zero or empty text simply to make a result look tidy. That can change what the data says.</p>
+</aside>
+
+<p><strong>Memory cue:</strong> NULL = no known value; zero = a known number; empty = recorded text with no characters.</p>
+<p>Day 2 teaches IS NULL and IS NOT NULL. Today, recognize and explain the difference.</p>
+<div class="section-end"><span>Pause · explain the idea in your own words</span><a href="#top">Back to top ↑</a></div></section>
+<section id="topic-09" class="topic" data-title="Where data comes from and where it goes"><div class="section-head"><span class="section-number">09</span><div><span class="section-kicker">DAY 01 / LEARN IN ORDER</span><h2>Where data comes from and where it goes</h2></div></div><p>Our store collects data from several places: a checkout form, a supplier CSV and a delivery API. An <strong>API</strong> is an interface through which programs exchange requests and responses.</p>
+<p><figure class="diagram" data-image="data-movement.svg"><svg xmlns="http://www.w3.org/2000/svg" width="800" viewBox="0 0 800 365" role="img" aria-label="Source data reaches an operational database and reporting copy"><rect width="800" height="365" rx="14" fill="#f1f5fa"/><line x1="140" y1="115" x2="140" y2="170" stroke="#637c9d" stroke-width="2"/><polyline points="145.0,162.0 140,170 135.0,162.0" fill="none" stroke="#637c9d" stroke-width="2"/><line x1="400" y1="115" x2="400" y2="170" stroke="#637c9d" stroke-width="2"/><polyline points="405.0,162.0 400,170 395.0,162.0" fill="none" stroke="#637c9d" stroke-width="2"/><line x1="660" y1="115" x2="660" y2="170" stroke="#637c9d" stroke-width="2"/><polyline points="665.0,162.0 660,170 655.0,162.0" fill="none" stroke="#637c9d" stroke-width="2"/><line x1="400" y1="235" x2="400" y2="285" stroke="#637c9d" stroke-width="2"/><polyline points="405.0,277.0 400,285 395.0,277.0" fill="none" stroke="#637c9d" stroke-width="2"/><rect x="25" y="25" width="230" height="90" rx="10" fill="#e3ecff"/><text x="140.0" y="50" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="#172b49">APPLICATION</text><text x="140.0" y="71" text-anchor="middle" font-family="Arial" font-size="13" font-weight="normal" fill="#172b49">Customer / checkout input</text><text x="140.0" y="92" text-anchor="middle" font-family="Arial" font-size="13" font-weight="normal" fill="#172b49">Creates business records</text><rect x="285" y="25" width="230" height="90" rx="10" fill="#fff1cf"/><text x="400.0" y="50" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="#172b49">FILE</text><text x="400.0" y="71" text-anchor="middle" font-family="Arial" font-size="13" font-weight="normal" fill="#172b49">Supplier CSV export</text><text x="400.0" y="92" text-anchor="middle" font-family="Arial" font-size="13" font-weight="normal" fill="#172b49">A batch of product records</text><rect x="545" y="25" width="230" height="90" rx="10" fill="#d9f2ed"/><text x="660.0" y="50" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="#172b49">API / EVENT SOURCE</text><text x="660.0" y="71" text-anchor="middle" font-family="Arial" font-size="13" font-weight="normal" fill="#172b49">Delivery status response</text><text x="660.0" y="92" text-anchor="middle" font-family="Arial" font-size="13" font-weight="normal" fill="#172b49">JSON or event messages</text><rect x="30" y="170" width="740" height="65" rx="10" fill="#102444"/><text x="400.0" y="195" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="#fff">VALIDATED OPERATIONAL DATABASE</text><text x="400.0" y="216" text-anchor="middle" font-family="Arial" font-size="13" font-weight="normal" fill="#fff">Daily business work; controlled writes and reads</text><rect x="30" y="285" width="740" height="55" rx="10" fill="#245dd1"/><text x="400.0" y="310" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="#fff">REPORTING DATASET / COPY</text><text x="400.0" y="331" text-anchor="middle" font-family="Arial" font-size="13" font-weight="normal" fill="#fff">Movement and transformation support later analysis</text></svg><figcaption>Different sources feed operational data; reporting may use a separate copy.</figcaption></figure></p>
+<table>
+<thead>
+<tr>
+<th>Step</th>
+<th>Store example</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Capture</td>
+<td>A customer submits an order</td>
+</tr>
+<tr>
+<td>Validate</td>
+<td>Check required fields and allowed values</td>
+</tr>
+<tr>
+<td>Store</td>
+<td>Save the accepted order</td>
+</tr>
+<tr>
+<td>Use and update</td>
+<td>Show its status and record shipment</td>
+</tr>
+<tr>
+<td>Keep or remove</td>
+<td>Preserve required history; follow retention rules</td>
+</tr>
+</tbody></table>
+<p>A report might use a copy refreshed last night. That copy cannot automatically claim to show current stock now. Know the source and refresh time.</p>
+<p>A <strong>backup</strong> supports recovery. An <strong>archive</strong> preserves selected history. A <strong>reporting copy</strong> supports analysis. These purposes differ even though each may contain copied data.</p>
+<p><strong>Access habit:</strong> grant only the data access needed for the task. Exported files also need protection; database permissions do not automatically protect a new CSV.</p>
+<p><strong>Memory cue:</strong> source, meaning and freshness travel with the data.</p>
+<div class="section-end"><span>Pause · explain the idea in your own words</span><a href="#top">Back to top ↑</a></div></section>
+<section id="topic-10" class="topic" data-title="Why files alone can become difficult"><div class="section-head"><span class="section-number">10</span><div><span class="section-kicker">DAY 01 / LEARN IN ORDER</span><h2>Why files alone can become difficult</h2></div></div><p>Files and spreadsheets are useful. The problem grows when many people or programs must maintain shared facts consistently.</p>
+<p><figure class="diagram" data-image="file-duplicates.svg"><svg xmlns="http://www.w3.org/2000/svg" width="800" viewBox="0 0 800 320" role="img" aria-label="Independent copies create conflicting customer data"><rect width="800" height="320" rx="14" fill="#f1f5fa"/><line x1="140" y1="138" x2="140" y2="200" stroke="#637c9d" stroke-width="2"/><polyline points="145.0,192.0 140,200 135.0,192.0" fill="none" stroke="#637c9d" stroke-width="2"/><line x1="400" y1="138" x2="400" y2="200" stroke="#637c9d" stroke-width="2"/><polyline points="405.0,192.0 400,200 395.0,192.0" fill="none" stroke="#637c9d" stroke-width="2"/><line x1="660" y1="138" x2="660" y2="200" stroke="#637c9d" stroke-width="2"/><polyline points="665.0,192.0 660,200 655.0,192.0" fill="none" stroke="#637c9d" stroke-width="2"/><rect x="25" y="25" width="230" height="113" rx="10" fill="#e3ecff"/><text x="140.0" y="50" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="#172b49">Sales file</text><text x="140.0" y="71" text-anchor="middle" font-family="Arial" font-size="13" font-weight="normal" fill="#172b49">Customer 1: Asha</text><text x="140.0" y="92" text-anchor="middle" font-family="Arial" font-size="13" font-weight="normal" fill="#172b49">City: Hyderabad</text><text x="140.0" y="113" text-anchor="middle" font-family="Arial" font-size="13" font-weight="normal" fill="#172b49">Maintained by sales</text><rect x="285" y="25" width="230" height="113" rx="10" fill="#fff1cf"/><text x="400.0" y="50" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="#172b49">Shipping file</text><text x="400.0" y="71" text-anchor="middle" font-family="Arial" font-size="13" font-weight="normal" fill="#172b49">Customer 1: Asha</text><text x="400.0" y="92" text-anchor="middle" font-family="Arial" font-size="13" font-weight="normal" fill="#172b49">City: Chennai</text><text x="400.0" y="113" text-anchor="middle" font-family="Arial" font-size="13" font-weight="normal" fill="#172b49">Maintained by shipping</text><rect x="545" y="25" width="230" height="113" rx="10" fill="#e3ecff"/><text x="660.0" y="50" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="#172b49">Billing file</text><text x="660.0" y="71" text-anchor="middle" font-family="Arial" font-size="13" font-weight="normal" fill="#172b49">Customer 1: Asha</text><text x="660.0" y="92" text-anchor="middle" font-family="Arial" font-size="13" font-weight="normal" fill="#172b49">City: Hyderabad</text><text x="660.0" y="113" text-anchor="middle" font-family="Arial" font-size="13" font-weight="normal" fill="#172b49">Maintained by billing</text><rect x="30" y="200" width="740" height="67" rx="10" fill="#102444"/><text x="400.0" y="225" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="#fff">Which address is current?</text><text x="400.0" y="246" text-anchor="middle" font-family="Arial" font-size="13" font-weight="normal" fill="#fff">Separate copies need coordination, validation and controlled updates.</text></svg><figcaption>Separate copies can disagree about a shared customer fact.</figcaption></figure></p>
+<p>Suppose sales, shipping and billing each keep Asha’s city. Shipping updates its copy, but the others do not. Now which city should the store use?</p>
+<table>
+<thead>
+<tr>
+<th>Problem</th>
+<th>Why a managed database helps</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Repeated facts</td>
+<td>Share a controlled source for common facts</td>
+</tr>
+<tr>
+<td>Conflicting edits</td>
+<td>Coordinate concurrent changes</td>
+</tr>
+<tr>
+<td>Different checks in each program</td>
+<td>Enforce shared database rules</td>
+</tr>
+<tr>
+<td>Difficult recovery</td>
+<td>Provide transaction and recovery mechanisms</td>
+</tr>
+<tr>
+<td>New questions need custom file logic</td>
+<td>Use flexible queries over managed data</td>
+</tr>
+</tbody></table>
+<p>A DBMS brings these responsibilities into a shared system. Good design and administration are still needed; installing database software does not automatically make data accurate.</p>
+<p><strong>Memory cue:</strong> a shared fact needs shared rules and controlled changes.</p>
+<p>A small personal list may work perfectly well as a file. Choose a database when the coordination, querying and reliability needs justify it.</p>
+<div class="section-end"><span>Pause · explain the idea in your own words</span><a href="#top">Back to top ↑</a></div></section>
+<section id="topic-11" class="topic" data-title="Database, DBMS, RDBMS and SQL"><div class="section-head"><span class="section-number">11</span><div><span class="section-kicker">DAY 01 / LEARN IN ORDER</span><h2>Database, DBMS, RDBMS and SQL</h2></div></div><p>These words describe different roles. Keep this distinction clear from your first day.</p>
+<p><figure class="diagram" data-image="dbms-manager.svg"><svg xmlns="http://www.w3.org/2000/svg" width="800" viewBox="0 0 800 345" role="img" aria-label="DBMS software manages a database for multiple clients"><rect width="800" height="345" rx="14" fill="#f1f5fa"/><line x1="140" y1="95" x2="140" y2="155" stroke="#637c9d" stroke-width="2"/><polyline points="145.0,147.0 140,155 135.0,147.0" fill="none" stroke="#637c9d" stroke-width="2"/><line x1="400" y1="95" x2="400" y2="155" stroke="#637c9d" stroke-width="2"/><polyline points="405.0,147.0 400,155 395.0,147.0" fill="none" stroke="#637c9d" stroke-width="2"/><line x1="660" y1="95" x2="660" y2="155" stroke="#637c9d" stroke-width="2"/><polyline points="665.0,147.0 660,155 655.0,147.0" fill="none" stroke="#637c9d" stroke-width="2"/><line x1="400" y1="230" x2="400" y2="270" stroke="#637c9d" stroke-width="2"/><polyline points="405.0,262.0 400,270 395.0,262.0" fill="none" stroke="#637c9d" stroke-width="2"/><rect x="30" y="25" width="220" height="70" rx="10" fill="#e3ecff"/><text x="140.0" y="50" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="#172b49">Applications</text><text x="140.0" y="71" text-anchor="middle" font-family="Arial" font-size="13" font-weight="normal" fill="#172b49">Shopping / finance / HR</text><rect x="290" y="25" width="220" height="70" rx="10" fill="#fff1cf"/><text x="400.0" y="50" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="#172b49">People and tools</text><text x="400.0" y="71" text-anchor="middle" font-family="Arial" font-size="13" font-weight="normal" fill="#172b49">Analyst / DBA / developer</text><rect x="550" y="25" width="220" height="70" rx="10" fill="#d9f2ed"/><text x="660.0" y="50" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="#172b49">Background jobs</text><text x="660.0" y="71" text-anchor="middle" font-family="Arial" font-size="13" font-weight="normal" fill="#172b49">Import / reports / backups</text><rect x="30" y="155" width="740" height="75" rx="10" fill="#102444"/><text x="400.0" y="180" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="#fff">DBMS SOFTWARE</text><text x="400.0" y="201" text-anchor="middle" font-family="Arial" font-size="13" font-weight="normal" fill="#fff">Query processing | rules | permissions | transactions | recovery</text><rect x="30" y="270" width="740" height="55" rx="10" fill="#245dd1"/><text x="400.0" y="295" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="#fff">DATABASE</text><text x="400.0" y="316" text-anchor="middle" font-family="Arial" font-size="13" font-weight="normal" fill="#fff">Organized data and metadata managed by the DBMS</text></svg><figcaption>Clients send requests to management software, which manages the database.</figcaption></figure></p>
+<table>
+<thead>
+<tr>
+<th>Word</th>
+<th>Plain meaning</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Database</td>
+<td>Organized data and database objects</td>
+<td>The store’s customers and orders</td>
+</tr>
+<tr>
+<td>DBMS</td>
+<td>Software that manages databases</td>
+<td>Software that controls reads, changes and access</td>
+</tr>
+<tr>
+<td>RDBMS</td>
+<td>A DBMS based on the relational model</td>
+<td>SQL Server, PostgreSQL or MySQL</td>
+</tr>
+<tr>
+<td>SQL</td>
+<td>Language used to express database operations</td>
+<td>SELECT CustomerName ...</td>
+</tr>
+<tr>
+<td>T-SQL</td>
+<td>SQL Server’s SQL dialect and extensions</td>
+<td>The syntax used in this handbook</td>
+</tr>
+</tbody></table>
+<p>An RDBMS is a kind of DBMS. It represents data using relational structures, commonly presented as tables, and supports operations and rules over that data.</p>
+<aside class="callout warning"><div class="callout-label"><span class="callout-dot"></span>warning<span class="label-title">Avoid the common shortcut</span></div><p>DBMS does not mean “single user,” and RDBMS does not simply mean “multiple users.” The relational model is the key distinction.</p>
+</aside>
+
+<p><strong>Memory cue:</strong> database stores; DBMS manages; RDBMS is relational; SQL expresses the request.</p>
+<div class="section-end"><span>Pause · explain the idea in your own words</span><a href="#top">Back to top ↑</a></div></section>
+<section id="topic-12" class="topic" data-title="Why SQL and relational databases emerged"><div class="section-head"><span class="section-number">12</span><div><span class="section-kicker">DAY 01 / LEARN IN ORDER</span><h2>Why SQL and relational databases emerged</h2></div></div><p>Earlier systems often required programmers to understand storage layouts or navigate particular record paths. Asking a new question could require more custom access code.</p>
+<p><figure class="diagram" data-image="sql-history.svg"><svg xmlns="http://www.w3.org/2000/svg" width="800" viewBox="0 0 800 365" role="img" aria-label="Relational ideas made flexible questions practical"><rect width="800" height="365" rx="14" fill="#f1f5fa"/><line x1="255" y1="80" x2="285" y2="80" stroke="#637c9d" stroke-width="2"/><polyline points="277.0,75.0 285,80 277.0,85.0" fill="none" stroke="#637c9d" stroke-width="2"/><line x1="515" y1="80" x2="545" y2="80" stroke="#637c9d" stroke-width="2"/><polyline points="537.0,75.0 545,80 537.0,85.0" fill="none" stroke="#637c9d" stroke-width="2"/><rect x="25" y="25" width="230" height="105" rx="10" fill="#e3ecff"/><text x="140.0" y="50" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="#172b49">Earlier approaches</text><text x="140.0" y="71" text-anchor="middle" font-family="Arial" font-size="13" font-weight="normal" fill="#172b49">Files and navigational DBs</text><text x="140.0" y="92" text-anchor="middle" font-family="Arial" font-size="13" font-weight="normal" fill="#172b49">Programs followed</text><text x="140.0" y="113" text-anchor="middle" font-family="Arial" font-size="13" font-weight="normal" fill="#172b49">storage / access paths</text><rect x="285" y="25" width="230" height="105" rx="10" fill="#245dd1"/><text x="400.0" y="50" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="#fff">1970: relational model</text><text x="400.0" y="71" text-anchor="middle" font-family="Arial" font-size="13" font-weight="normal" fill="#fff">Edgar F. Codd at IBM</text><text x="400.0" y="92" text-anchor="middle" font-family="Arial" font-size="13" font-weight="normal" fill="#fff">Data expressed in relations</text><text x="400.0" y="113" text-anchor="middle" font-family="Arial" font-size="13" font-weight="normal" fill="#fff">Less dependence on layout</text><rect x="545" y="25" width="230" height="105" rx="10" fill="#d9f2ed"/><text x="660.0" y="50" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="#172b49">1970s: System R + SQL</text><text x="660.0" y="71" text-anchor="middle" font-family="Arial" font-size="13" font-weight="normal" fill="#172b49">Chamberlin and Boyce</text><text x="660.0" y="92" text-anchor="middle" font-family="Arial" font-size="13" font-weight="normal" fill="#172b49">High-level requests</text><text x="660.0" y="113" text-anchor="middle" font-family="Arial" font-size="13" font-weight="normal" fill="#172b49">Engine chooses a plan</text><text x="30" y="195" font-family="Arial" font-size="13" fill="#53647b">Then: describe how to navigate data.</text><text x="30" y="230" font-family="Arial" font-size="13" fill="#53647b">Relational direction: describe the data and relationships.</text><text x="30" y="265" font-family="Arial" font-size="13" fill="#53647b">SQL direction: state the result you want; the engine plans the work.</text><text x="30" y="320" font-family="Arial" font-size="13" fill="#53647b">Files and nonrelational systems still have useful roles; this is not a replacement timeline.</text></svg><figcaption>Relational ideas separated data meaning from physical access details.</figcaption></figure></p>
+<p><strong>1970:</strong> Edgar F. Codd published the relational model while working at IBM. Its central direction was to describe data through relations and reduce dependence on physical storage organization.</p>
+<p><strong>1970s:</strong> IBM’s System R project explored a working relational system. Donald Chamberlin and Raymond Boyce developed the language that became SQL, initially called SEQUEL.</p>
+<p><strong>Why it matters now:</strong> you can ask for customer names without coding the physical steps for finding every stored record. The engine plans the access work.</p>
+<p>This idea is related to <strong>data independence</strong>: separating the logical view of data from its physical storage details. It does not mean every change to a table definition leaves applications unaffected.</p>
+<p><strong>Memory cue:</strong> ask for the result; avoid hard-coding every storage access step.</p>
+<p>Files and nonrelational systems remain useful. This is a conceptual history, not a claim that one technology replaced every other one.</p>
+<div class="section-end"><span>Pause · explain the idea in your own words</span><a href="#top">Back to top ↑</a></div></section>
+<section id="topic-13" class="topic" data-title="Read a table across and down"><div class="section-head"><span class="section-number">13</span><div><span class="section-kicker">DAY 01 / LEARN IN ORDER</span><h2>Read a table across and down</h2></div></div><p>A <strong>table</strong> organizes records into named columns and rows. Our sample table has one row per customer.</p>
+<table>
+<thead>
+<tr>
+<th>CustomerID</th>
+<th>CustomerName</th>
+<th>City</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>Asha</td>
+<td>Hyderabad</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Ravi</td>
+<td>Chennai</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Neha</td>
+<td>Hyderabad</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Omar</td>
+<td>Mumbai</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Meera</td>
+<td>NULL</td>
+</tr>
+</tbody></table>
+<p><strong>Across row 2:</strong> Ravi is CustomerID 2 and his recorded city is Chennai. <strong>Down City:</strong> each row supplies the city value for a different customer.</p>
+<table>
+<thead>
+<tr>
+<th>Word</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Row / record</td>
+<td>One instance at the table’s grain</td>
+</tr>
+<tr>
+<td>Column / attribute</td>
+<td>One named property</td>
+</tr>
+<tr>
+<td>Table definition</td>
+<td>Column names, types and configured rules</td>
+</tr>
+<tr>
+<td>Result set</td>
+<td>Rows and columns returned by a query</td>
+</tr>
+</tbody></table>
+<p>Hyderabad repeats because two customers share the city. A column is not automatically unique.</p>
+<p><strong>Order matters in different ways:</strong> a SELECT list determines output-column order. A table’s stored rows do not come with a guaranteed query display order; requesting row order is a later lesson.</p>
+<p><strong>Memory cue:</strong> across = one record; down = one attribute.</p>
+<div class="section-end"><span>Pause · explain the idea in your own words</span><a href="#top">Back to top ↑</a></div></section>
+<section id="topic-14" class="topic" data-title="Data types: represent the right kind of value"><div class="section-head"><span class="section-number">14</span><div><span class="section-kicker">DAY 01 / LEARN IN ORDER</span><h2>Data types: represent the right kind of value</h2></div></div><p>A <strong>data type</strong> describes how a value is represented and which values that representation allows. Choose the type from the meaning of the field.</p>
+<table>
+<thead>
+<tr>
+<th>SQL Server type</th>
+<th>Useful for</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>int</td>
+<td>Whole numbers</td>
+<td>Quantity 2 or CustomerID 1</td>
+</tr>
+<tr>
+<td>decimal(10,2)</td>
+<td>Exact decimal amounts</td>
+<td>500.25</td>
+</tr>
+<tr>
+<td>date</td>
+<td>Calendar date</td>
+<td>2026-10-13</td>
+</tr>
+<tr>
+<td>varchar(30)</td>
+<td>Variable-length character data</td>
+<td>Hyderabad</td>
+</tr>
+<tr>
+<td>nvarchar(30)</td>
+<td>Unicode character data</td>
+<td>Names requiring Unicode representation</td>
+</tr>
+</tbody></table>
+<p>For decimal(10,2), precision 10 is the total allowed digits; scale 2 is the digits after the decimal point. You do not need to memorize every type or range today.</p>
+<p>A code such as &#39;00125&#39; may need text to preserve its leading zeros. An identifier made of digits is not automatically a quantity you should add.</p>
+<p>The type cannot explain everything: an amount also needs a currency and business definition. Nor can a text type prove that the recorded city is correct.</p>
+<p><strong>Memory cue:</strong> meaning first, type second.</p>
+<p>Detailed encoding and length rules are later topics. Our lab uses int and varchar for simple English sample values.</p>
+<div class="section-end"><span>Pause · explain the idea in your own words</span><a href="#top">Back to top ↑</a></div></section>
+<section id="topic-15" class="topic" data-title="Relationships connect facts; constraints protect rules"><div class="section-head"><span class="section-number">15</span><div><span class="section-kicker">DAY 01 / LEARN IN ORDER</span><h2>Relationships connect facts; constraints protect rules</h2></div></div><p>A customer can place several orders. Keep the shared customer profile in Customers, and let Orders refer to its CustomerID.</p>
+<p><figure class="diagram" data-image="relations.svg"><svg xmlns="http://www.w3.org/2000/svg" width="800" viewBox="0 0 800 345" role="img" aria-label="An order refers to a customer using a shared identifier"><rect width="800" height="345" rx="14" fill="#f1f5fa"/><line x1="335" y1="100" x2="455" y2="100" stroke="#637c9d" stroke-width="2"/><polyline points="447.0,95.0 455,100 447.0,105.0" fill="none" stroke="#637c9d" stroke-width="2"/><rect x="30" y="25" width="305" height="150" rx="10" fill="#e3ecff"/><text x="182.5" y="50" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="#172b49">CUSTOMERS</text><text x="182.5" y="71" text-anchor="middle" font-family="Arial" font-size="13" font-weight="normal" fill="#172b49">CustomerID | Name</text><text x="182.5" y="92" text-anchor="middle" font-family="Arial" font-size="13" font-weight="normal" fill="#172b49">1 | Asha</text><text x="182.5" y="113" text-anchor="middle" font-family="Arial" font-size="13" font-weight="normal" fill="#172b49">2 | Ravi</text><text x="182.5" y="134" text-anchor="middle" font-family="Arial" font-size="13" font-weight="normal" fill="#172b49">One row per customer</text><rect x="455" y="25" width="315" height="150" rx="10" fill="#d9f2ed"/><text x="612.5" y="50" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="#172b49">ORDERS</text><text x="612.5" y="71" text-anchor="middle" font-family="Arial" font-size="13" font-weight="normal" fill="#172b49">OrderID | CustomerID</text><text x="612.5" y="92" text-anchor="middle" font-family="Arial" font-size="13" font-weight="normal" fill="#172b49">101 | 1</text><text x="612.5" y="113" text-anchor="middle" font-family="Arial" font-size="13" font-weight="normal" fill="#172b49">102 | 1</text><text x="612.5" y="134" text-anchor="middle" font-family="Arial" font-size="13" font-weight="normal" fill="#172b49">103 | 2</text><text x="345" y="85" font-family="Arial" font-size="13" fill="#53647b">CustomerID</text><text x="30" y="222" font-family="Arial" font-size="13" fill="#53647b">Customer 1 has Orders 101 and 102; Customer 2 has Order 103.</text><text x="30" y="258" font-family="Arial" font-size="13" fill="#53647b">Keep customer details once, then reference the customer from each order.</text><text x="30" y="294" font-family="Arial" font-size="13" fill="#53647b">A foreign-key rule can reject an order that refers to a nonexistent customer.</text></svg><figcaption>Orders refer to customers by CustomerID.</figcaption></figure></p>
+<p>Asha’s two orders can refer to CustomerID 1. We can update her current profile once rather than maintain several independent copies. A historical delivery address may still be deliberately saved on an order.</p>
+<table>
+<thead>
+<tr>
+<th>Constraint</th>
+<th>Rule it can enforce</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Primary key</td>
+<td>Identify each row uniquely; required key values</td>
+</tr>
+<tr>
+<td>Foreign key</td>
+<td>Validate a reference to a permitted key</td>
+</tr>
+<tr>
+<td>NOT NULL</td>
+<td>Require a value</td>
+</tr>
+<tr>
+<td>CHECK</td>
+<td>Reject values that violate a defined condition</td>
+</tr>
+<tr>
+<td>UNIQUE</td>
+<td>Protect a defined uniqueness rule</td>
+</tr>
+</tbody></table>
+<p><strong>Referential integrity</strong> means keeping defined references valid. For example, an order’s required customer reference should not point to a nonexistent customer.</p>
+<aside class="callout warning"><div class="callout-label"><span class="callout-dot"></span>warning<span class="label-title">Design the rules deliberately</span></div><p>Matching column names do not create a relationship or a constraint. The designer defines which fields refer to which keys and what rules to enforce.</p>
+</aside>
+
+<p><strong>Memory cue:</strong> relationships connect; constraints enforce. Detailed key design and joins come later.</p>
+<div class="section-end"><span>Pause · explain the idea in your own words</span><a href="#top">Back to top ↑</a></div></section>
+<section id="topic-16" class="topic" data-title="Transactions and OLTP: daily business work"><div class="section-head"><span class="section-number">16</span><div><span class="section-kicker">DAY 01 / LEARN IN ORDER</span><h2>Transactions and OLTP: daily business work</h2></div></div><p><strong>OLTP: Online Transaction Processing</strong> supports daily operations such as orders, bookings, payments and stock updates. Requests are often short and frequent. “Online” does not require a public website.</p>
+<p>A <strong>transaction</strong> coordinates database operations as one unit of work. Transferring 100 from account A to B needs both the debit and the credit.</p>
+<p><figure class="diagram" data-image="transaction.svg"><svg xmlns="http://www.w3.org/2000/svg" width="800" viewBox="0 0 800 345" role="img" aria-label="Transfer either commits both changes or leaves neither"><rect width="800" height="345" rx="14" fill="#f1f5fa"/><line x1="200" y1="87" x2="200" y2="130" stroke="#637c9d" stroke-width="2"/><polyline points="205.0,122.0 200,130 195.0,122.0" fill="none" stroke="#637c9d" stroke-width="2"/><line x1="370" y1="167" x2="430" y2="167" stroke="#637c9d" stroke-width="2"/><polyline points="422.0,162.0 430,167 422.0,172.0" fill="none" stroke="#637c9d" stroke-width="2"/><rect x="30" y="25" width="740" height="62" rx="10" fill="#102444"/><text x="400.0" y="50" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="#fff">ONE TRANSACTION: transfer 100 from A to B</text><text x="400.0" y="71" text-anchor="middle" font-family="Arial" font-size="13" font-weight="normal" fill="#fff">Before: A = 500; B = 200</text><rect x="30" y="130" width="340" height="75" rx="10" fill="#fff1cf"/><text x="200.0" y="155" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="#172b49">Step 1: debit A</text><text x="200.0" y="176" text-anchor="middle" font-family="Arial" font-size="13" font-weight="normal" fill="#172b49">Working balance: A = 400</text><text x="200.0" y="197" text-anchor="middle" font-family="Arial" font-size="13" font-weight="normal" fill="#172b49">Do not treat this alone as success</text><rect x="430" y="130" width="340" height="75" rx="10" fill="#e3ecff"/><text x="600.0" y="155" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="#172b49">Step 2: credit B</text><text x="600.0" y="176" text-anchor="middle" font-family="Arial" font-size="13" font-weight="normal" fill="#172b49">Working balance: B = 300</text><text x="600.0" y="197" text-anchor="middle" font-family="Arial" font-size="13" font-weight="normal" fill="#172b49">Both updates must succeed</text><rect x="30" y="255" width="340" height="65" rx="10" fill="#d9f2ed"/><text x="200.0" y="280" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="#172b49">COMMIT: complete</text><text x="200.0" y="301" text-anchor="middle" font-family="Arial" font-size="13" font-weight="normal" fill="#172b49">After: A = 400; B = 300</text><rect x="430" y="255" width="340" height="65" rx="10" fill="#fff0ed"/><text x="600.0" y="280" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="#172b49">ROLLBACK: unsuccessful</text><text x="600.0" y="301" text-anchor="middle" font-family="Arial" font-size="13" font-weight="normal" fill="#172b49">Restore: A = 500; B = 200</text></svg><figcaption>A transfer completes both changes or rolls them back.</figcaption></figure></p>
+<table>
+<thead>
+<tr>
+<th>ACID property</th>
+<th>Plain meaning</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Atomicity</td>
+<td>Required operations succeed together or do not remain partly completed</td>
+</tr>
+<tr>
+<td>Consistency</td>
+<td>The completed transaction preserves defined rules</td>
+</tr>
+<tr>
+<td>Isolation</td>
+<td>Concurrent transactions interact under the chosen isolation rules</td>
+</tr>
+<tr>
+<td>Durability</td>
+<td>Normally committed, durable changes survive supported recovery</td>
+</tr>
+</tbody></table>
+<p>Isolation coordinates simultaneous work; it does not mean all users must take turns. Its exact behavior depends on the isolation settings.</p>
+<p>A SELECT can be an OLTP read, such as retrieving one order’s status. OLTP describes a workload, not one SQL command.</p>
+<p><strong>Memory cue:</strong> one business action can need several database operations.</p>
+<div class="section-end"><span>Pause · explain the idea in your own words</span><a href="#top">Back to top ↑</a></div></section>
+<section id="topic-17" class="topic" data-title="OLTP and analytics answer different questions"><div class="section-head"><span class="section-number">17</span><div><span class="section-kicker">DAY 01 / LEARN IN ORDER</span><h2>OLTP and analytics answer different questions</h2></div></div><p><strong>OLAP: Online Analytical Processing</strong> focuses on analysis, trends and summaries across data. Compare the questions before comparing technologies.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Operational / OLTP style</th>
+<th>Analytical / OLAP style</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Question</td>
+<td>What is Order 101’s status?</td>
+<td>Which products sold most this year?</td>
+</tr>
+<tr>
+<td>Work</td>
+<td>Short reads and changes</td>
+<td>Larger reads and summaries</td>
+</tr>
+<tr>
+<td>Purpose</td>
+<td>Run the business</td>
+<td>Understand the business</td>
+</tr>
+<tr>
+<td>Typical users</td>
+<td>Applications and operational staff</td>
+<td>Analysts and reporting tools</td>
+</tr>
+</tbody></table>
+<p>An RDBMS can support both kinds of work. Large reports can compete with operational requests, so some systems use a separate reporting dataset. Such a copy may have a refresh delay.</p>
+<p><strong>Relational-system strengths:</strong> flexible querying, shared rules, controlled access and transaction support.</p>
+<p><strong>Tradeoffs:</strong> table design needs care; structure changes need planning; expensive queries consume resources; backup and maintenance are necessary. No product choice removes these responsibilities automatically.</p>
+<p><strong>Memory cue:</strong> OLTP handles the activity; analytics studies the activity.</p>
+<p>Today, recognize the difference. Warehouse design and performance tuning belong to later lessons.</p>
+<div class="section-end"><span>Pause · explain the idea in your own words</span><a href="#top">Back to top ↑</a></div></section>
+<section id="topic-18" class="topic" data-title="SQL describes the work you want"><div class="section-head"><span class="section-number">18</span><div><span class="section-kicker">DAY 01 / LEARN IN ORDER</span><h2>SQL describes the work you want</h2></div></div><p><strong>SQL: Structured Query Language</strong> expresses operations involving data and database objects. SQL Server accepts <strong>T-SQL: Transact-SQL</strong>, its SQL dialect and extensions.</p>
+<p>“Show the customer names” becomes:</p>
+<div class="code-panel"><div class="code-top"><span>sql / example</span><button type="button" class="copy-code" aria-label="Copy code example">Copy</button></div><pre><code><span class="kw">SELECT</span> CustomerName
+<span class="kw">FROM</span> #Customers;</code></pre></div><p>You will run this example after the supplied lab setup.</p>
+<p>This is <strong>declarative</strong>: you describe the requested result rather than every physical retrieval step. The engine decides how to perform the access work.</p>
+<table>
+<thead>
+<tr>
+<th>Need</th>
+<th>Commands to recognize</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Read rows</td>
+<td>SELECT</td>
+</tr>
+<tr>
+<td>Add or change rows</td>
+<td>INSERT, UPDATE, DELETE</td>
+</tr>
+<tr>
+<td>Define or change objects</td>
+<td>CREATE, ALTER, DROP</td>
+</tr>
+<tr>
+<td>Manage access</td>
+<td>GRANT, DENY, REVOKE in T-SQL</td>
+</tr>
+<tr>
+<td>Coordinate transactions</td>
+<td>BEGIN TRANSACTION, COMMIT, ROLLBACK</td>
+</tr>
+</tbody></table>
+<p>Interview labels include DDL for definition, DML for data manipulation, DCL for access and TCL for transactions. SELECT is sometimes called DQL and sometimes classified within DML. Explain the purpose rather than treating the labels as universal rules.</p>
+<p><strong>Memory cue:</strong> SQL says what; the engine plans how.</p>
+<p>Valid SQL can still answer the wrong business question or run inefficiently. SQL Server, PostgreSQL and MySQL also differ in syntax and features.</p>
+<div class="section-end"><span>Pause · explain the idea in your own words</span><a href="#top">Back to top ↑</a></div></section>
+<section id="topic-19" class="topic" data-title="SQL Server is the engine; SSMS is the client"><div class="section-head"><span class="section-number">19</span><div><span class="section-kicker">DAY 01 / LEARN IN ORDER</span><h2>SQL Server is the engine; SSMS is the client</h2></div></div><p><strong>SQL Server</strong> manages databases and executes requests. <strong>SSMS: SQL Server Management Studio</strong> is a client tool for writing SQL, connecting to the engine and displaying results.</p>
+<p><figure class="diagram" data-image="hierarchy.svg"><svg xmlns="http://www.w3.org/2000/svg" width="800" viewBox="0 0 800 365" role="img" aria-label="SQL Server software manages databases containing schemas and tables"><rect width="800" height="365" rx="14" fill="#f1f5fa"/><line x1="400" y1="75" x2="400" y2="105" stroke="#637c9d" stroke-width="2"/><polyline points="405.0,97.0 400,105 395.0,97.0" fill="none" stroke="#637c9d" stroke-width="2"/><line x1="400" y1="160" x2="400" y2="190" stroke="#637c9d" stroke-width="2"/><polyline points="405.0,182.0 400,190 395.0,182.0" fill="none" stroke="#637c9d" stroke-width="2"/><line x1="400" y1="245" x2="400" y2="275" stroke="#637c9d" stroke-width="2"/><polyline points="405.0,267.0 400,275 395.0,267.0" fill="none" stroke="#637c9d" stroke-width="2"/><rect x="30" y="20" width="740" height="55" rx="10" fill="#102444"/><text x="400.0" y="45" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="#fff">SQL SERVER INSTANCE</text><text x="400.0" y="66" text-anchor="middle" font-family="Arial" font-size="13" font-weight="normal" fill="#fff">A running Database Engine installation</text><rect x="30" y="105" width="740" height="55" rx="10" fill="#245dd1"/><text x="400.0" y="130" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="#fff">DATABASE: StudyStore</text><text x="400.0" y="151" text-anchor="middle" font-family="Arial" font-size="13" font-weight="normal" fill="#fff">A logical container for related data and database objects</text><rect x="30" y="190" width="740" height="55" rx="10" fill="#d9f2ed"/><text x="400.0" y="215" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="#172b49">SCHEMA: dbo</text><text x="400.0" y="236" text-anchor="middle" font-family="Arial" font-size="13" font-weight="normal" fill="#172b49">A namespace that groups database objects</text><rect x="30" y="275" width="740" height="55" rx="10" fill="#e3ecff"/><text x="400.0" y="300" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="#172b49">TABLE: Customers</text><text x="400.0" y="321" text-anchor="middle" font-family="Arial" font-size="13" font-weight="normal" fill="#172b49">Rows and columns; qualified name: dbo.Customers</text></svg><figcaption>The instance manages databases; schemas organize objects such as tables.</figcaption></figure></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>What it means</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>SQL Server instance</td>
+<td>A separately configured Database Engine instance</td>
+</tr>
+<tr>
+<td>StudyStore</td>
+<td>Our conceptual database</td>
+</tr>
+<tr>
+<td>dbo</td>
+<td>A schema: a namespace for database objects</td>
+</tr>
+<tr>
+<td>Customers</td>
+<td>A table in that schema</td>
+</tr>
+<tr>
+<td>dbo.Customers</td>
+<td>Schema-qualified table name</td>
+</tr>
+</tbody></table>
+<p>“Schema” can also mean a data structure definition in broader discussions. In dbo.Customers, it means the object namespace.</p>
+<p>Opening SSMS does not create a server. Closing SSMS does not normally stop SQL Server; other clients can continue using it.</p>
+<p>Our lab uses <code>#Customers</code>, a <strong>local temporary table</strong> held in tempdb and scoped to the connection. It is a stand-in for a permanent business table; use the same live connection for setup and SELECT.</p>
+<p><strong>Memory cue:</strong> SSMS sends; SQL Server serves.</p>
+<div class="section-end"><span>Pause · explain the idea in your own words</span><a href="#top">Back to top ↑</a></div></section>
+<section id="topic-20" class="topic" data-title="How applications and people use the database"><div class="section-head"><span class="section-number">20</span><div><span class="section-kicker">DAY 01 / LEARN IN ORDER</span><h2>How applications and people use the database</h2></div></div><p>A shopper uses a screen; the application backend sends the database request. A <strong>backend</strong> is the application logic serving that screen. A <strong>driver</strong> or library handles database communication.</p>
+<p><figure class="diagram" data-image="apps-use-db.svg"><svg xmlns="http://www.w3.org/2000/svg" width="800" viewBox="0 0 800 420" role="img" aria-label="Several parties access a database through controlled identities"><rect width="800" height="420" rx="14" fill="#f1f5fa"/><line x1="250" y1="65" x2="310" y2="65" stroke="#637c9d" stroke-width="2"/><polyline points="302.0,60.0 310,65 302.0,70.0" fill="none" stroke="#637c9d" stroke-width="2"/><line x1="550" y1="105" x2="550" y2="160" stroke="#637c9d" stroke-width="2"/><polyline points="555.0,152.0 550,160 545.0,152.0" fill="none" stroke="#637c9d" stroke-width="2"/><line x1="250" y1="200" x2="310" y2="200" stroke="#637c9d" stroke-width="2"/><polyline points="302.0,195.0 310,200 302.0,205.0" fill="none" stroke="#637c9d" stroke-width="2"/><line x1="250" y1="345" x2="310" y2="240" stroke="#637c9d" stroke-width="2"/><polyline points="301.689672782523,244.4652504452115 310,240 310.3721042037676,249.42663982877986" fill="none" stroke="#637c9d" stroke-width="2"/><line x1="550" y1="240" x2="550" y2="305" stroke="#637c9d" stroke-width="2"/><polyline points="555.0,297.0 550,305 545.0,297.0" fill="none" stroke="#637c9d" stroke-width="2"/><rect x="25" y="25" width="225" height="80" rx="10" fill="#e3ecff"/><text x="137.5" y="50" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="#172b49">Customer</text><text x="137.5" y="71" text-anchor="middle" font-family="Arial" font-size="13" font-weight="normal" fill="#172b49">Uses web / mobile UI</text><text x="137.5" y="92" text-anchor="middle" font-family="Arial" font-size="13" font-weight="normal" fill="#172b49">Does not normally type SQL</text><rect x="310" y="25" width="465" height="80" rx="10" fill="#245dd1"/><text x="542.5" y="50" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="#fff">Application backend</text><text x="542.5" y="71" text-anchor="middle" font-family="Arial" font-size="13" font-weight="normal" fill="#fff">Checks requests and business rules</text><text x="542.5" y="92" text-anchor="middle" font-family="Arial" font-size="13" font-weight="normal" fill="#fff">Uses a driver to call the database</text><rect x="25" y="160" width="225" height="80" rx="10" fill="#fff1cf"/><text x="137.5" y="185" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="#172b49">Staff / analyst</text><text x="137.5" y="206" text-anchor="middle" font-family="Arial" font-size="13" font-weight="normal" fill="#172b49">Uses an authorized tool</text><text x="137.5" y="227" text-anchor="middle" font-family="Arial" font-size="13" font-weight="normal" fill="#172b49">Reads allowed business data</text><rect x="310" y="160" width="465" height="80" rx="10" fill="#102444"/><text x="542.5" y="185" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="#fff">SQL SERVER / RDBMS</text><text x="542.5" y="206" text-anchor="middle" font-family="Arial" font-size="13" font-weight="normal" fill="#fff">Permissions + queries + transactions</text><text x="542.5" y="227" text-anchor="middle" font-family="Arial" font-size="13" font-weight="normal" fill="#fff">Customers | Orders | Products</text><rect x="25" y="305" width="225" height="80" rx="10" fill="#d9f2ed"/><text x="137.5" y="330" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="#172b49">DBA / operations</text><text x="137.5" y="351" text-anchor="middle" font-family="Arial" font-size="13" font-weight="normal" fill="#172b49">Manages access, backup</text><text x="137.5" y="372" text-anchor="middle" font-family="Arial" font-size="13" font-weight="normal" fill="#172b49">and database health</text><rect x="310" y="305" width="465" height="80" rx="10" fill="#e3ecff"/><text x="542.5" y="330" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="#172b49">Shared business data</text><text x="542.5" y="351" text-anchor="middle" font-family="Arial" font-size="13" font-weight="normal" fill="#172b49">Different identities get different rights</text><text x="542.5" y="372" text-anchor="middle" font-family="Arial" font-size="13" font-weight="normal" fill="#172b49">Readers need not be allowed to update</text></svg><figcaption>Application backends and authorized tools send database requests.</figcaption></figure></p>
+<p><strong>Follow “My orders”:</strong> the backend identifies the customer, checks which orders they may see, asks the database, and formats the returned rows for the screen.</p>
+<table>
+<thead>
+<tr>
+<th>Party</th>
+<th>Typical role</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Customer</td>
+<td>Uses the application</td>
+</tr>
+<tr>
+<td>Developer</td>
+<td>Builds application logic and database requests</td>
+</tr>
+<tr>
+<td>Analyst</td>
+<td>Reads authorized data for analysis</td>
+</tr>
+<tr>
+<td>DBA</td>
+<td>Manages database access, backup, recovery and health</td>
+</tr>
+<tr>
+<td>Automated job</td>
+<td>Runs scheduled imports or reporting</td>
+</tr>
+</tbody></table>
+<p><strong>Authentication</strong> establishes identity. <strong>Authorization</strong> decides what that identity may do. Application rules and database permissions both matter.</p>
+<p>Applications should pass user-supplied values as parameters rather than concatenate them into raw SQL text. Detailed parameterized queries come later.</p>
+<p><strong>Memory cue:</strong> screen → backend request → database result → screen. This is a common pattern, not the only possible architecture.</p>
+<div class="section-end"><span>Pause · explain the idea in your own words</span><a href="#top">Back to top ↑</a></div></section>
+<section id="topic-21" class="topic" data-title="The engine uses memory and persistent storage"><div class="section-head"><span class="section-number">21</span><div><span class="section-kicker">DAY 01 / LEARN IN ORDER</span><h2>The engine uses memory and persistent storage</h2></div></div><p>A table is a logical object. Its data is managed in database structures; it is not a CSV that every SELECT reads line by line.</p>
+<p><figure class="diagram" data-image="engine-hardware.svg"><svg xmlns="http://www.w3.org/2000/svg" width="800" viewBox="0 0 800 360" role="img" aria-label="The engine uses memory and persistent storage"><rect width="800" height="360" rx="14" fill="#f1f5fa"/><line x1="200" y1="75" x2="200" y2="110" stroke="#637c9d" stroke-width="2"/><polyline points="205.0,102.0 200,110 195.0,102.0" fill="none" stroke="#637c9d" stroke-width="2"/><line x1="370" y1="150" x2="430" y2="150" stroke="#637c9d" stroke-width="2"/><polyline points="422.0,145.0 430,150 422.0,155.0" fill="none" stroke="#637c9d" stroke-width="2"/><line x1="200" y1="187" x2="200" y2="245" stroke="#637c9d" stroke-width="2"/><polyline points="205.0,237.0 200,245 195.0,237.0" fill="none" stroke="#637c9d" stroke-width="2"/><line x1="600" y1="187" x2="600" y2="245" stroke="#637c9d" stroke-width="2"/><polyline points="605.0,237.0 600,245 595.0,237.0" fill="none" stroke="#637c9d" stroke-width="2"/><rect x="30" y="20" width="740" height="55" rx="10" fill="#e3ecff"/><text x="400.0" y="45" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="#172b49">CLIENT: SSMS or application</text><text x="400.0" y="66" text-anchor="middle" font-family="Arial" font-size="13" font-weight="normal" fill="#172b49">Sends a request and receives rows or an error</text><rect x="30" y="110" width="340" height="77" rx="10" fill="#102444"/><text x="200.0" y="135" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="#fff">QUERY PROCESSING</text><text x="200.0" y="156" text-anchor="middle" font-family="Arial" font-size="13" font-weight="normal" fill="#fff">Understand, plan and execute</text><text x="200.0" y="177" text-anchor="middle" font-family="Arial" font-size="13" font-weight="normal" fill="#fff">CPU performs the work</text><rect x="430" y="110" width="340" height="77" rx="10" fill="#245dd1"/><text x="600.0" y="135" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="#fff">STORAGE MANAGEMENT</text><text x="600.0" y="156" text-anchor="middle" font-family="Arial" font-size="13" font-weight="normal" fill="#fff">Access pages, caching and I/O</text><text x="600.0" y="177" text-anchor="middle" font-family="Arial" font-size="13" font-weight="normal" fill="#fff">RAM and storage participate</text><rect x="30" y="245" width="740" height="65" rx="10" fill="#d9f2ed"/><text x="400.0" y="270" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="#172b49">MEMORY + PERSISTENT STORAGE</text><text x="400.0" y="291" text-anchor="middle" font-family="Arial" font-size="13" font-weight="normal" fill="#172b49">Working data in RAM | Stored database and log files</text><text x="30" y="340" font-family="Arial" font-size="13" fill="#53647b">Tables are logical objects. Physical storage uses structures such as files and pages.</text></svg><figcaption>Query processing and storage management cooperate to return the requested data.</figcaption></figure></p>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Its role</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Query processor</td>
+<td>Understands the request and runs a plan</td>
+</tr>
+<tr>
+<td>Storage management</td>
+<td>Accesses the needed database data</td>
+</tr>
+<tr>
+<td>Buffer cache</td>
+<td>Memory holding data pages</td>
+</tr>
+<tr>
+<td>Persistent files</td>
+<td>Stored database data and transaction logs</td>
+</tr>
+<tr>
+<td>Transaction log</td>
+<td>Change records used for transaction handling and recovery</td>
+</tr>
+</tbody></table>
+<p>A <strong>data page</strong> is a unit of stored database data. Day 1 does not require page sizes or file-layout details.</p>
+<p>The needed page may already be in memory, so a SELECT does not always require a fresh disk read. A usable execution plan may also be cached.</p>
+<aside class="callout warning"><div class="callout-label"><span class="callout-dot"></span>warning<span class="label-title">Plan cache is different from result caching</span></div><p>A cached plan describes how to do the work. It does not automatically contain the old rows to return again.</p>
+</aside>
+
+<p><strong>Memory cue:</strong> memory holds working data; storage preserves files; the plan describes work.</p>
+<div class="section-end"><span>Pause · explain the idea in your own words</span><a href="#top">Back to top ↑</a></div></section>
+<section id="topic-22" class="topic" data-title="What happens when SELECT executes?"><div class="section-head"><span class="section-number">22</span><div><span class="section-kicker">DAY 01 / LEARN IN ORDER</span><h2>What happens when SELECT executes?</h2></div></div><p>Imagine asking for CustomerName from the sample table. Here is a simplified journey for a new query.</p>
+<p><figure class="diagram" data-image="query-flow.svg"><svg xmlns="http://www.w3.org/2000/svg" width="800" viewBox="0 0 800 435" role="img" aria-label="Simplified request path for a new SQL Server SELECT"><rect width="800" height="435" rx="14" fill="#f1f5fa"/><line x1="400" y1="74" x2="400" y2="99" stroke="#637c9d" stroke-width="2"/><polyline points="405.0,91.0 400,99 395.0,91.0" fill="none" stroke="#637c9d" stroke-width="2"/><line x1="400" y1="153" x2="400" y2="178" stroke="#637c9d" stroke-width="2"/><polyline points="405.0,170.0 400,178 395.0,170.0" fill="none" stroke="#637c9d" stroke-width="2"/><line x1="400" y1="232" x2="400" y2="257" stroke="#637c9d" stroke-width="2"/><polyline points="405.0,249.0 400,257 395.0,249.0" fill="none" stroke="#637c9d" stroke-width="2"/><line x1="400" y1="311" x2="400" y2="336" stroke="#637c9d" stroke-width="2"/><polyline points="405.0,328.0 400,336 395.0,328.0" fill="none" stroke="#637c9d" stroke-width="2"/><rect x="30" y="20" width="740" height="54" rx="10" fill="#e3ecff"/><text x="400.0" y="45" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="#172b49">1. RECEIVE the SQL request</text><text x="400.0" y="66" text-anchor="middle" font-family="Arial" font-size="13" font-weight="normal" fill="#172b49">Connection identifies the client; access rules apply</text><rect x="30" y="99" width="740" height="54" rx="10" fill="#245dd1"/><text x="400.0" y="124" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="#fff">2. PARSE + BIND</text><text x="400.0" y="145" text-anchor="middle" font-family="Arial" font-size="13" font-weight="normal" fill="#fff">Check syntax; resolve tables, columns and their types</text><rect x="30" y="178" width="740" height="54" rx="10" fill="#102444"/><text x="400.0" y="203" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="#fff">3. PLAN</text><text x="400.0" y="224" text-anchor="middle" font-family="Arial" font-size="13" font-weight="normal" fill="#fff">Choose an execution approach, using available metadata and estimates</text><rect x="30" y="257" width="740" height="54" rx="10" fill="#067d93"/><text x="400.0" y="282" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="#fff">4. EXECUTE + ACCESS DATA</text><text x="400.0" y="303" text-anchor="middle" font-family="Arial" font-size="13" font-weight="normal" fill="#fff">Run the plan; obtain data from memory or storage as required</text><rect x="30" y="336" width="740" height="54" rx="10" fill="#d9f2ed"/><text x="400.0" y="361" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="#172b49">5. RETURN</text><text x="400.0" y="382" text-anchor="middle" font-family="Arial" font-size="13" font-weight="normal" fill="#172b49">Send result rows to the client, or report an error</text><text x="30" y="417" font-family="Arial" font-size="13" fill="#53647b">A suitable cached plan may be reused; every request does not need a fresh optimization.</text></svg><figcaption>The engine receives, understands, plans, executes and returns the request.</figcaption></figure></p>
+<div class="walkthrough"><div class="lab-eyebrow">INTERACTIVE / REQUEST JOURNEY</div><h3>Walk through one SELECT</h3><div class="phase-buttons" role="group" aria-label="Query processing stages"><button type="button" data-phase="0" aria-pressed="true"><span>1</span>Receive</button><button type="button" data-phase="1" aria-pressed="false"><span>2</span>Understand</button><button type="button" data-phase="2" aria-pressed="false"><span>3</span>Plan</button><button type="button" data-phase="3" aria-pressed="false"><span>4</span>Execute</button><button type="button" data-phase="4" aria-pressed="false"><span>5</span>Return</button></div><p id="phase-detail" role="status" aria-live="polite"></p><div class="phase-controls"><button id="phase-prev" type="button">Previous step</button><button id="phase-next" type="button">Next step</button></div></div><h3>Translate the technical words</h3>
+<table>
+<thead>
+<tr>
+<th>Stage</th>
+<th>Meaning</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Receive</td>
+<td>Accept a client request</td>
+<td>SSMS sends the SQL text</td>
+</tr>
+<tr>
+<td>Parse</td>
+<td>Check SQL syntax</td>
+<td>Are the commas and clauses valid?</td>
+</tr>
+<tr>
+<td>Bind</td>
+<td>Resolve object and column names</td>
+<td>Does CustomerName exist here?</td>
+</tr>
+<tr>
+<td>Plan</td>
+<td>Choose an execution strategy</td>
+<td>Decide how to access the data</td>
+</tr>
+<tr>
+<td>Execute</td>
+<td>Perform the planned work</td>
+<td>Obtain the requested values</td>
+</tr>
+<tr>
+<td>Return</td>
+<td>Send results to the client</td>
+<td>Display names in the Results pane</td>
+</tr>
+</tbody></table>
+<p>The <strong>query optimizer</strong> considers ways to perform the request. An <strong>execution plan</strong> describes the chosen strategy. A suitable cached plan may be reused rather than planned afresh.</p>
+<p>Access permissions also apply. A correctly written query can be denied, and a request can fail before producing a result.</p>
+<p><strong>Memory cue:</strong> parse syntax; bind names; plan work; execute; return. This is a teaching model, not a promise that every request follows identical internal steps.</p>
+<div class="section-end"><span>Pause · explain the idea in your own words</span><a href="#top">Back to top ↑</a></div></section>
+<section id="topic-23" class="topic" data-title="Written SQL and its meaning are different"><div class="section-head"><span class="section-number">23</span><div><span class="section-kicker">DAY 01 / LEARN IN ORDER</span><h2>Written SQL and its meaning are different</h2></div></div><p>You write SELECT before FROM, but to understand this simple request, identify the source first and then the requested columns.</p>
+<div class="code-panel"><div class="code-top"><span>sql / example</span><button type="button" class="copy-code" aria-label="Copy code example">Copy</button></div><pre><code><span class="kw">SELECT</span> CustomerName
+<span class="kw">FROM</span> #Customers;</code></pre></div><p><figure class="diagram" data-image="logical-physical.svg"><svg xmlns="http://www.w3.org/2000/svg" width="800" viewBox="0 0 800 300" role="img" aria-label="Query meaning and execution strategy are different"><rect width="800" height="300" rx="14" fill="#f1f5fa"/><rect x="30" y="25" width="340" height="170" rx="10" fill="#e3ecff"/><text x="200.0" y="50" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="#172b49">LOGICAL MEANING</text><text x="200.0" y="71" text-anchor="middle" font-family="Arial" font-size="13" font-weight="normal" fill="#172b49">FROM: identify source rows</text><text x="200.0" y="92" text-anchor="middle" font-family="Arial" font-size="13" font-weight="normal" fill="#172b49">SELECT: choose output columns</text><text x="200.0" y="113" text-anchor="middle" font-family="Arial" font-size="13" font-weight="normal" fill="#172b49"></text><text x="200.0" y="134" text-anchor="middle" font-family="Arial" font-size="13" font-weight="normal" fill="#172b49">Understand the requested result</text><rect x="430" y="25" width="340" height="170" rx="10" fill="#d9f2ed"/><text x="600.0" y="50" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="#172b49">PHYSICAL EXECUTION</text><text x="600.0" y="71" text-anchor="middle" font-family="Arial" font-size="13" font-weight="normal" fill="#172b49">Engine uses an execution plan</text><text x="600.0" y="92" text-anchor="middle" font-family="Arial" font-size="13" font-weight="normal" fill="#172b49">Access method depends on data</text><text x="600.0" y="113" text-anchor="middle" font-family="Arial" font-size="13" font-weight="normal" fill="#172b49">and available structures</text><text x="600.0" y="134" text-anchor="middle" font-family="Arial" font-size="13" font-weight="normal" fill="#172b49"></text><text x="600.0" y="155" text-anchor="middle" font-family="Arial" font-size="13" font-weight="normal" fill="#172b49">Operations may be rearranged</text><text x="30" y="247" font-family="Arial" font-size="13" fill="#53647b">Writing SELECT first does not mean the engine physically performs it first.</text><text x="30" y="277" font-family="Arial" font-size="13" fill="#53647b">No ORDER BY means no guaranteed row order, even if results look stable.</text></svg><figcaption>Logical meaning describes the result; the physical plan performs the work.</figcaption></figure></p>
+<p><strong>FROM #Customers:</strong> use these source rows. <strong>SELECT CustomerName:</strong> produce that output column.</p>
+<p>A <strong>physical execution plan</strong> is how the engine actually performs the request. The SQL text does not prescribe every access step.</p>
+<p>Three ideas stay separate: written clause order, logical meaning and physical execution. Optimizers can rearrange work while preserving the requested meaning.</p>
+<p><strong>Important:</strong> output-column order follows the SELECT list. Row order is not guaranteed without an explicit ordering request. We will learn ordering later.</p>
+<p><strong>Memory cue:</strong> SELECT says what to show; FROM says where the data comes from.</p>
+<div class="section-end"><span>Pause · explain the idea in your own words</span><a href="#top">Back to top ↑</a></div></section>
+<section id="topic-24" class="topic" data-title="Prepare the practice table once"><div class="section-head"><span class="section-number">24</span><div><span class="section-kicker">DAY 01 / LEARN IN ORDER</span><h2>Prepare the practice table once</h2></div></div><p>Open a fresh SQL Server query window, such as SSMS. Run this supplied setup once and keep that connection open.</p>
+<div class="code-panel"><div class="code-top"><span>sql / example</span><button type="button" class="copy-code" aria-label="Copy code example">Copy</button></div><pre><code><span class="kw">CREATE</span> <span class="kw">TABLE</span> #Customers (
+    CustomerID   <span class="kw">int</span> <span class="kw">NOT</span> <span class="kw">NULL</span> <span class="kw">PRIMARY</span> <span class="kw">KEY</span>,
+    CustomerName <span class="kw">varchar</span>(<span class="num">30</span>) <span class="kw">NOT</span> <span class="kw">NULL</span>,
+    City         <span class="kw">varchar</span>(<span class="num">30</span>) <span class="kw">NULL</span>
+);
+
+<span class="kw">INSERT</span> <span class="kw">INTO</span> #Customers
+    (CustomerID, CustomerName, City)
+<span class="kw">VALUES</span>
+    (<span class="num">1</span>, <span class="str">&#39;Asha&#39;</span>,  <span class="str">&#39;Hyderabad&#39;</span>),
+    (<span class="num">2</span>, <span class="str">&#39;Ravi&#39;</span>,  <span class="str">&#39;Chennai&#39;</span>),
+    (<span class="num">3</span>, <span class="str">&#39;Neha&#39;</span>,  <span class="str">&#39;Hyderabad&#39;</span>),
+    (<span class="num">4</span>, <span class="str">&#39;Omar&#39;</span>,  <span class="str">&#39;Mumbai&#39;</span>),
+    (<span class="num">5</span>, <span class="str">&#39;Meera&#39;</span>, <span class="kw">NULL</span>);</code></pre></div><p>CREATE TABLE supplies the structure. INSERT supplies five sample rows. CustomerID must be present and unique; CustomerName is required; City may be NULL. You will learn to write these definitions later.</p>
+<aside class="callout warning"><div class="callout-label"><span class="callout-dot"></span>warning<span class="label-title">Execute selected queries after setup</span></div><p>Do not rerun CREATE TABLE for every SELECT. If the temporary table already exists, start a fresh practice connection to restart. A different connection cannot see this session’s local table.</p>
+</aside>
+
+<p><strong>Verification scope:</strong> the SELECT results were checked with equivalent portable SQL in a local engine. The SQL Server temporary-table setup was not executed against a live SQL Server during preparation. Complete that step in your own SQL Server session.</p>
+<div class="section-end"><span>Pause · explain the idea in your own words</span><a href="#top">Back to top ↑</a></div></section>
+<section id="topic-25" class="topic" data-title="Run your first SELECT and read the result"><div class="section-head"><span class="section-number">25</span><div><span class="section-kicker">DAY 01 / LEARN IN ORDER</span><h2>Run your first SELECT and read the result</h2></div></div><p>Ask for all three customer columns:</p>
+<div class="code-panel"><div class="code-top"><span>sql / example</span><button type="button" class="copy-code" aria-label="Copy code example">Copy</button></div><pre><code><span class="kw">SELECT</span> CustomerID, CustomerName, City
+<span class="kw">FROM</span> #Customers;</code></pre></div><table>
+<thead>
+<tr>
+<th>SQL part</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>SELECT</td>
+<td>Start the output list</td>
+</tr>
+<tr>
+<td>CustomerID, CustomerName, City</td>
+<td>Return these columns in this order</td>
+</tr>
+<tr>
+<td>Commas</td>
+<td>Separate output items</td>
+</tr>
+<tr>
+<td>FROM #Customers</td>
+<td>Name the source</td>
+</tr>
+<tr>
+<td>Semicolon</td>
+<td>End the statement</td>
+</tr>
+</tbody></table>
+<p>Execute this query in your existing lab connection. In SSMS, use Execute or F5.</p>
+<table>
+<thead>
+<tr>
+<th>CustomerID</th>
+<th>CustomerName</th>
+<th>City</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>Asha</td>
+<td>Hyderabad</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Ravi</td>
+<td>Chennai</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Neha</td>
+<td>Hyderabad</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Omar</td>
+<td>Mumbai</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Meera</td>
+<td>NULL</td>
+</tr>
+</tbody></table>
+<p>Expect five rows and three columns. The displayed teaching order is not a SQL row-order guarantee. Meera’s missing city remains NULL; the client may display it specially.</p>
+<p>This plain SELECT reads the table; it does not change stored values.</p>
+<p><strong>Memory cue:</strong> predict the columns and row count before pressing Execute.</p>
+<div class="section-end"><span>Pause · explain the idea in your own words</span><a href="#top">Back to top ↑</a></div></section>
+<section id="topic-26" class="topic" data-title="Choose columns without changing the table"><div class="section-head"><span class="section-number">26</span><div><span class="section-kicker">DAY 01 / LEARN IN ORDER</span><h2>Choose columns without changing the table</h2></div></div><p>Return only names:</p>
+<div class="code-panel"><div class="code-top"><span>sql / example</span><button type="button" class="copy-code" aria-label="Copy code example">Copy</button></div><pre><code><span class="kw">SELECT</span> CustomerName
+<span class="kw">FROM</span> #Customers;</code></pre></div><p><figure class="diagram" data-image="select-projection.svg"><svg xmlns="http://www.w3.org/2000/svg" width="800" viewBox="0 0 800 345" role="img" aria-label="SELECT chooses columns from source rows"><rect width="800" height="345" rx="14" fill="#f1f5fa"/><line x1="370" y1="100" x2="430" y2="100" stroke="#637c9d" stroke-width="2"/><polyline points="422.0,95.0 430,100 422.0,105.0" fill="none" stroke="#637c9d" stroke-width="2"/><rect x="30" y="25" width="340" height="150" rx="10" fill="#e3ecff"/><text x="200.0" y="50" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="#172b49">SOURCE: Customers</text><text x="200.0" y="71" text-anchor="middle" font-family="Arial" font-size="13" font-weight="normal" fill="#172b49">ID | Name | City</text><text x="200.0" y="92" text-anchor="middle" font-family="Arial" font-size="13" font-weight="normal" fill="#172b49">1 | Asha | Hyderabad</text><text x="200.0" y="113" text-anchor="middle" font-family="Arial" font-size="13" font-weight="normal" fill="#172b49">2 | Ravi | Chennai</text><text x="200.0" y="134" text-anchor="middle" font-family="Arial" font-size="13" font-weight="normal" fill="#172b49">3 | Neha | Hyderabad</text><rect x="430" y="25" width="340" height="150" rx="10" fill="#d9f2ed"/><text x="600.0" y="50" text-anchor="middle" font-family="Arial" font-size="16" font-weight="bold" fill="#172b49">RESULT</text><text x="600.0" y="71" text-anchor="middle" font-family="Arial" font-size="13" font-weight="normal" fill="#172b49">Name</text><text x="600.0" y="92" text-anchor="middle" font-family="Arial" font-size="13" font-weight="normal" fill="#172b49">Asha</text><text x="600.0" y="113" text-anchor="middle" font-family="Arial" font-size="13" font-weight="normal" fill="#172b49">Ravi</text><text x="600.0" y="134" text-anchor="middle" font-family="Arial" font-size="13" font-weight="normal" fill="#172b49">Neha</text><text x="30" y="223" font-family="Arial" font-size="13" fill="#53647b">SELECT CustomerName FROM #Customers;</text><text x="30" y="259" font-family="Arial" font-size="13" fill="#53647b">Only the requested column is returned; stored data is not changed.</text><text x="30" y="295" font-family="Arial" font-size="13" fill="#53647b">Illustration shows three rows. The practice dataset contains five.</text></svg><figcaption>Projection chooses the requested columns without altering the source table.</figcaption></figure></p>
+<p>The result has one column and five rows. The source still has CustomerID, CustomerName and City. Choosing output columns is called <strong>projection</strong>.</p>
+<div class="interactive-lab" id="projection-lab"><div class="lab-eyebrow">INTERACTIVE / SAFE EXPLORATION</div><h3>Choose columns. Predict the result.</h3><p>This local teaching demo projects the five sample rows. It does not connect to SQL Server or execute T-SQL.</p><fieldset><legend>Columns to return</legend><label><input type="checkbox" name="column" value="CustomerID" checked> CustomerID</label><label><input type="checkbox" name="column" value="CustomerName" checked> CustomerName</label><label><input type="checkbox" name="column" value="City" checked> City</label></fieldset><div class="demo-query"><code id="demo-sql"></code><button id="run-demo" type="button">Show projected result</button></div><div id="demo-status" role="status" aria-live="polite"></div><div class="table-scroll" id="demo-result"></div><p class="small">Rows are shown in a fixed teaching order. Real SQL queries without ORDER BY do not promise that order.</p></div><h3>What about SELECT *?</h3>
+<div class="code-panel"><div class="code-top"><span>sql / example</span><button type="button" class="copy-code" aria-label="Copy code example">Copy</button></div><pre><code><span class="kw">SELECT</span> *
+<span class="kw">FROM</span> #Customers;</code></pre></div><p>The star returns the source’s columns. It is convenient for quick exploration. In maintained queries, name the columns you need so the intended output is clear.</p>
+<p>Selecting City alone returns Hyderabad twice because two customers have that city. SELECT does not automatically remove duplicates; DISTINCT is a later topic.</p>
+<p><strong>Memory cue:</strong> fewer output columns does not mean fewer source rows or fewer stored columns.</p>
+<div class="section-end"><span>Pause · explain the idea in your own words</span><a href="#top">Back to top ↑</a></div></section>
+<section id="topic-27" class="topic" data-title="First-day habits and common mistakes"><div class="section-head"><span class="section-number">27</span><div><span class="section-kicker">DAY 01 / LEARN IN ORDER</span><h2>First-day habits and common mistakes</h2></div></div><table>
+<thead>
+<tr>
+<th>Habit</th>
+<th>Apply it to this lab</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Know the grain</td>
+<td>One row represents one customer</td>
+</tr>
+<tr>
+<td>Choose the output</td>
+<td>Name the columns you need</td>
+</tr>
+<tr>
+<td>Predict the result</td>
+<td>Five rows; requested columns only</td>
+</tr>
+<tr>
+<td>Check the connection</td>
+<td>Keep #Customers in its original session</td>
+</tr>
+<tr>
+<td>Keep NULL meaningful</td>
+<td>Meera’s city is missing, not empty text</td>
+</tr>
+<tr>
+<td>Avoid row-order assumptions</td>
+<td>Compare values, not screen positions</td>
+</tr>
+<tr>
+<td>Read the actual error</td>
+<td>Fix the reported issue before guessing</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>Symptom</th>
+<th>First check</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Invalid object name</td>
+<td>Did setup run in this live connection?</td>
+</tr>
+<tr>
+<td>Invalid column name</td>
+<td>Is the column spelled correctly?</td>
+</tr>
+<tr>
+<td>Incorrect syntax</td>
+<td>Is a comma missing or a clause incomplete?</td>
+</tr>
+<tr>
+<td>Table already exists</td>
+<td>Did you run setup twice?</td>
+</tr>
+<tr>
+<td>Unexpected output</td>
+<td>Which SQL text was selected and executed?</td>
+</tr>
+</tbody></table>
+<p><strong>Interview habit:</strong> explain what you requested, what you expected and why the result is correct. A successful query is not automatically a correct business answer.</p>
+<div class="section-end"><span>Pause · explain the idea in your own words</span><a href="#top">Back to top ↑</a></div></section>
+<section id="topic-28" class="topic" data-title="The memory map: connect roles before terms"><div class="section-head"><span class="section-number">28</span><div><span class="section-kicker">DAY 01 / LEARN IN ORDER</span><h2>The memory map: connect roles before terms</h2></div></div><table>
+<thead>
+<tr>
+<th>Memory cue</th>
+<th>Reconstruct the meaning</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Data plus context</td>
+<td>Recorded facts become useful information</td>
+</tr>
+<tr>
+<td>Fixed fields; keys; free form</td>
+<td>The three forms of data</td>
+</tr>
+<tr>
+<td>One row, one meaning</td>
+<td>Grain</td>
+</tr>
+<tr>
+<td>Database stores; DBMS manages</td>
+<td>Collection versus software</td>
+</tr>
+<tr>
+<td>Relationships connect; constraints enforce</td>
+<td>Related facts and shared rules</td>
+</tr>
+<tr>
+<td>SQL asks; engine plans</td>
+<td>Declarative querying</td>
+</tr>
+<tr>
+<td>SSMS sends; SQL Server serves</td>
+<td>Client versus engine</td>
+</tr>
+<tr>
+<td>NULL unknown; zero known</td>
+<td>Different recorded states</td>
+</tr>
+<tr>
+<td>Parse, bind, plan, execute, return</td>
+<td>Simplified query journey</td>
+</tr>
+<tr>
+<td>SELECT shows; FROM supplies</td>
+<td>Output columns and source</td>
+</tr>
+</tbody></table>
+<div class="interactive-lab"><div class="lab-eyebrow">INTERACTIVE / RETRIEVAL PRACTICE</div><h3>Recall before you reveal</h3><p id="recall-count"></p><p id="recall-question" class="recall-question"></p><button type="button" id="recall-reveal" aria-controls="recall-answer" aria-expanded="false">Reveal explanation</button><p id="recall-answer" hidden></p><div class="phase-controls"><button type="button" id="recall-prev">Previous card</button><button type="button" id="recall-next">Next card</button></div><p class="small">Answer aloud first. Move through the cards again when you revise.</p></div><h3>Reconstruct the whole store example</h3>
+<p>The store records customers and orders. Tables give the records structure; relationships connect them; constraints protect defined rules. A client sends T-SQL to SQL Server. The engine processes the request, accesses data and returns a result set.</p>
+<aside class="callout practice"><div class="callout-label"><span class="callout-dot"></span>practice<span class="label-title">Recall, then check</span></div><p>Close the notes and explain one cue with a customer example. Check your explanation, correct what you missed, then revisit it during your next study session.</p>
+</aside>
+
+<p>These cues support understanding; they are not substitutes for executing and explaining queries.</p>
+<div class="section-end"><span>Pause · explain the idea in your own words</span><a href="#top">Back to top ↑</a></div></section>
+<section id="topic-29" class="topic" data-title="Interview room: data and database foundations"><div class="section-head"><span class="section-number">29</span><div><span class="section-kicker">DAY 01 / LEARN IN ORDER</span><h2>Interview room: data and database foundations</h2></div></div><p>Answer with a definition and one example.</p>
+<details class="answer"><summary><span class="answer-icon">+</span>1. How do the three forms of data differ?</summary><div class="answer-body"><p>Structured data follows defined fields, like a customer table. Semi-structured data uses keys or tags, like JSON. Unstructured main content is free-form, like review text or audio. A review can also have structured metadata such as rating and CustomerID.</p>
+</div></details>
+
+<details class="answer"><summary><span class="answer-icon">+</span>2. Why does grain matter?</summary><div class="answer-body"><p>It tells me what one row represents. One order and one order item have different grains. Counting item rows does not automatically count orders, and summing a copied order total can double count.</p>
+</div></details>
+
+<details class="answer"><summary><span class="answer-icon">+</span>3. Database versus DBMS versus RDBMS?</summary><div class="answer-body"><p>A database holds organized data and objects. A DBMS manages databases. An RDBMS is a DBMS based on the relational model, commonly presented through tables. SQL Server is an RDBMS product.</p>
+</div></details>
+
+<details class="answer"><summary><span class="answer-icon">+</span>4. How do relationships help integrity?</summary><div class="answer-body"><p>Shared identifiers connect related records. A defined foreign key can enforce permitted references, such as an order referring to an existing customer. Equal column names alone do not enforce the rule.</p>
+</div></details>
+
+<details class="answer"><summary><span class="answer-icon">+</span>5. Can valid data still be inaccurate?</summary><div class="answer-body"><p>Yes. Hyderabad is a valid city value but can be wrong for a customer who lives in Chennai. Defined constraints protect rules; accuracy may require external verification.</p>
+</div></details>
+<div class="section-end"><span>Pause · explain the idea in your own words</span><a href="#top">Back to top ↑</a></div></section>
+<section id="topic-30" class="topic" data-title="Interview room: SQL and query behavior"><div class="section-head"><span class="section-number">30</span><div><span class="section-kicker">DAY 01 / LEARN IN ORDER</span><h2>Interview room: SQL and query behavior</h2></div></div><p>Keep the explanation short and connect each term to its job.</p>
+<details class="answer"><summary><span class="answer-icon">+</span>1. SQL, T-SQL, SQL Server and SSMS?</summary><div class="answer-body"><p>SQL is the language. T-SQL is SQL Server’s dialect and extensions. SQL Server is the database engine product. SSMS is a client tool used to send requests and inspect results.</p>
+</div></details>
+
+<details class="answer"><summary><span class="answer-icon">+</span>2. What does declarative mean?</summary><div class="answer-body"><p>I describe the requested result rather than every physical step for finding the data. For example, SELECT CustomerName asks for names; the engine plans the access work.</p>
+</div></details>
+
+<details class="answer"><summary><span class="answer-icon">+</span>3. What happens when SELECT runs?</summary><div class="answer-body"><p>For a simplified new-query path, the engine receives the request, checks syntax, resolves names, chooses a plan, executes it and returns results. A suitable existing plan can be reused. Identity and permissions also govern access.</p>
+</div></details>
+
+<details class="answer"><summary><span class="answer-icon">+</span>4. Is NULL the same as zero or empty text?</summary><div class="answer-body"><p>No. NULL marks no known or supplied value. Zero is a known number; empty text is a recorded string with zero characters. Their meanings should not be replaced interchangeably.</p>
+</div></details>
+
+<details class="answer"><summary><span class="answer-icon">+</span>5. Does SELECT guarantee order or remove duplicates?</summary><div class="answer-body"><p>No. Our simple SELECT returns the requested columns without changing the source. It does not promise row order or automatically remove duplicate values.</p>
+</div></details>
+
+<details class="answer"><summary><span class="answer-icon">+</span>6. What is OLTP?</summary><div class="answer-body"><p>A workload supporting daily operational events, such as purchases and bookings, with many short requests. A SELECT for an order status can be part of OLTP; OLTP is not a database product or SQL command.</p>
+</div></details>
+<div class="section-end"><span>Pause · explain the idea in your own words</span><a href="#top">Back to top ↑</a></div></section>
+<section id="topic-31" class="topic" data-title="Technical vocabulary in one glance"><div class="section-head"><span class="section-number">31</span><div><span class="section-kicker">DAY 01 / LEARN IN ORDER</span><h2>Technical vocabulary in one glance</h2></div></div><table>
+<thead>
+<tr>
+<th>Word</th>
+<th>What it means</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Entity</td>
+<td>The thing or event being described</td>
+</tr>
+<tr>
+<td>Attribute</td>
+<td>A property of an entity</td>
+</tr>
+<tr>
+<td>Grain</td>
+<td>What one record represents</td>
+</tr>
+<tr>
+<td>Metadata</td>
+<td>Descriptions that help interpret data</td>
+</tr>
+<tr>
+<td>Constraint</td>
+<td>A database-enforced rule</td>
+</tr>
+<tr>
+<td>Referential integrity</td>
+<td>Defined references stay valid</td>
+</tr>
+<tr>
+<td>Transaction</td>
+<td>Operations coordinated as a unit</td>
+</tr>
+<tr>
+<td>Concurrency</td>
+<td>Work overlaps in time</td>
+</tr>
+<tr>
+<td>Schema</td>
+<td>In SQL Server, an object namespace</td>
+</tr>
+<tr>
+<td>Query</td>
+<td>A request involving database data</td>
+</tr>
+<tr>
+<td>Result set</td>
+<td>Returned rows and columns</td>
+</tr>
+<tr>
+<td>Parser</td>
+<td>Checks and interprets SQL syntax</td>
+</tr>
+<tr>
+<td>Binding</td>
+<td>Resolves referenced objects and columns</td>
+</tr>
+<tr>
+<td>Optimizer</td>
+<td>Chooses an execution approach</td>
+</tr>
+<tr>
+<td>Execution plan</td>
+<td>Strategy for performing a request</td>
+</tr>
+<tr>
+<td>Projection</td>
+<td>Choosing output columns</td>
+</tr>
+</tbody></table>
+<p><strong>Use the word only if you can give an example.</strong> “Projection” becomes clearer when you show SELECT CustomerName and explain that it returns one column while preserving the source table.</p>
+<div class="section-end"><span>Pause · explain the idea in your own words</span><a href="#top">Back to top ↑</a></div></section>
+<section id="topic-32" class="topic" data-title="Sources and reading beyond Day 1"><div class="section-head"><span class="section-number">32</span><div><span class="section-kicker">DAY 01 / LEARN IN ORDER</span><h2>Sources and reading beyond Day 1</h2></div></div><p>Primary references for the concepts and syntax. The visuals are original teaching illustrations, not actual captured execution plans.</p>
+<table>
+<thead>
+<tr>
+<th>Topic</th>
+<th>Reference</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Data and forms</td>
+<td><a href="https://www.ibm.com/think/topics/data">IBM: data</a></td>
+</tr>
+<tr>
+<td>Unstructured examples</td>
+<td><a href="https://www.ibm.com/think/topics/unstructured-data-examples-use-cases">IBM: examples and uses</a></td>
+</tr>
+<tr>
+<td>Relational history</td>
+<td><a href="https://www.ibm.com/history/relational-database">IBM: relational database</a></td>
+</tr>
+<tr>
+<td>Relational model</td>
+<td><a href="https://research.ibm.com/publications/a-relational-model-of-data-for-large-shared-data-banks">IBM Research: Codd’s publication</a></td>
+</tr>
+<tr>
+<td>SELECT syntax and logical meaning</td>
+<td><a href="https://learn.microsoft.com/en-us/sql/t-sql/queries/select-transact-sql">Microsoft: SELECT</a></td>
+</tr>
+<tr>
+<td>Plans and query processing</td>
+<td><a href="https://learn.microsoft.com/en-us/sql/relational-databases/query-processing-architecture-guide">Microsoft: query architecture</a></td>
+</tr>
+<tr>
+<td>Transactions and OLTP</td>
+<td><a href="https://learn.microsoft.com/en-us/azure/architecture/data-guide/relational-data/online-transaction-processing">Microsoft: OLTP</a></td>
+</tr>
+<tr>
+<td>NULL</td>
+<td><a href="https://learn.microsoft.com/en-us/sql/t-sql/language-elements/null-and-unknown-transact-sql">Microsoft: NULL and UNKNOWN</a></td>
+</tr>
+<tr>
+<td>Supplied lab setup</td>
+<td><a href="https://learn.microsoft.com/en-us/sql/t-sql/statements/create-table-transact-sql">Microsoft: CREATE TABLE</a></td>
+</tr>
+<tr>
+<td>Log and recovery</td>
+<td><a href="https://learn.microsoft.com/en-us/sql/relational-databases/logs/the-transaction-log-sql-server">Microsoft: transaction log</a></td>
+</tr>
+</tbody></table>
+<p><strong>Later:</strong> filtering, sorting, joins, aggregation and detailed design. The remaining pages are independent practice, answers and your completion checklist.</p>
+<div class="section-end"><span>Pause · explain the idea in your own words</span><a href="#top">Back to top ↑</a></div></section>
+<section id="topic-33" class="topic" data-title="Final practice: explain, predict and write"><div class="section-head"><span class="section-number">33</span><div><span class="section-kicker">DAY 01 / LEARN IN ORDER</span><h2>Final practice: explain, predict and write</h2></div></div><p>Try every question before opening the answer guide.</p>
+<p><strong>Data and database reasoning</strong></p>
+<ol>
+<li>Classify a customer table, a JSON order response, a delivery photo and a support-call recording. Explain why.</li>
+<li>A review has text, rating 4 and CustomerID 1. Can its parts have different data forms?</li>
+<li>Order 101 has two product lines, 300 and 200. How many order rows and item rows are needed? What is the correct total?</li>
+<li>Every address field is filled. Does that prove accuracy?</li>
+<li>Explain database, DBMS, RDBMS and SQL using one store example.</li>
+<li>Why can an order reference CustomerID instead of copying an independent profile?</li>
+<li>Explain what ACID protects in a transfer.</li>
+<li>Distinguish a current order-status request from a yearly sales summary.</li>
+</ol>
+<p><strong>SQL and result reasoning</strong></p>
+<ol start="9">
+<li>Explain SQL Server versus SSMS.</li>
+<li>Trace a new SELECT from the client to the result.</li>
+<li>Why can a cached plan still require data access?</li>
+<li>Write a query returning CustomerID and CustomerName from #Customers.</li>
+<li>Write a query returning CustomerName first and CustomerID second.</li>
+<li>Return City alone. Predict rows, duplicates and NULL.</li>
+<li>Explain whether those queries change the source table or guarantee row order.</li>
+</ol>
+<p><strong>Practice method:</strong> write your prediction, execute the query where applicable, then explain any disagreement.</p>
+<div class="section-end"><span>Pause · explain the idea in your own words</span><a href="#top">Back to top ↑</a></div></section>
+<section id="topic-34" class="topic" data-title="Answer guide: data and database reasoning"><div class="section-head"><span class="section-number">34</span><div><span class="section-kicker">DAY 01 / LEARN IN ORDER</span><h2>Answer guide: data and database reasoning</h2></div></div><details class="answer"><summary><span class="answer-icon">+</span>1–2. Data forms</summary><div class="answer-body"><p>A table is structured because it uses defined fields. A JSON response is semi-structured because keys and nesting describe its content. A photo and call recording have unstructured main content. Review text can be free-form while rating and CustomerID are structured metadata.</p>
+</div></details>
+
+<details class="answer"><summary><span class="answer-icon">+</span>3. Grain and total</summary><div class="answer-body"><p>One order row and two order-item rows. The line amounts sum to 300 + 200 = 500. Copying the whole-order total onto both lines and summing it would wrongly give 1000.</p>
+</div></details>
+
+<details class="answer"><summary><span class="answer-icon">+</span>4. Completeness and accuracy</summary><div class="answer-body"><p>Filled fields support completeness, not proof of correctness. An address can be fully populated but belong to the wrong location.</p>
+</div></details>
+
+<details class="answer"><summary><span class="answer-icon">+</span>5–6. Database roles and references</summary><div class="answer-body"><p>The database holds store facts. A DBMS manages them; an RDBMS manages relational structures. SQL expresses operations. Shared customer references reduce independently maintained profile copies; defined constraints enforce the references. Historical snapshots may still be stored deliberately.</p>
+</div></details>
+
+<details class="answer"><summary><span class="answer-icon">+</span>7–8. Transactions and workloads</summary><div class="answer-body"><p>Atomicity keeps both transfer steps together; consistency preserves defined rules; isolation coordinates concurrent interactions; durability preserves normally durable commits through supported recovery. Order status is an OLTP-style read. Yearly sales analysis is an analytical-style request. Either can use SQL.</p>
+</div></details>
+<div class="section-end"><span>Pause · explain the idea in your own words</span><a href="#top">Back to top ↑</a></div></section>
+<section id="topic-35" class="topic" data-title="Answer guide: your first SQL queries"><div class="section-head"><span class="section-number">35</span><div><span class="section-kicker">DAY 01 / LEARN IN ORDER</span><h2>Answer guide: your first SQL queries</h2></div></div><p><strong>9–11:</strong> SSMS is the client; SQL Server is the engine. A simplified new-query journey is receive, parse, bind, plan, execute and return. A plan describes work, not cached result rows, so data access remains necessary.</p>
+<p><strong>12. ID and name:</strong></p>
+<div class="code-panel"><div class="code-top"><span>sql / example</span><button type="button" class="copy-code" aria-label="Copy code example">Copy</button></div><pre><code><span class="kw">SELECT</span> CustomerID, CustomerName
+<span class="kw">FROM</span> #Customers;</code></pre></div><p><strong>13. Name first:</strong></p>
+<div class="code-panel"><div class="code-top"><span>sql / example</span><button type="button" class="copy-code" aria-label="Copy code example">Copy</button></div><pre><code><span class="kw">SELECT</span> CustomerName, CustomerID
+<span class="kw">FROM</span> #Customers;</code></pre></div><p>Each returns five rows and two columns. The output columns follow the SELECT list.</p>
+<p><strong>14. City alone:</strong></p>
+<div class="code-panel"><div class="code-top"><span>sql / example</span><button type="button" class="copy-code" aria-label="Copy code example">Copy</button></div><pre><code><span class="kw">SELECT</span> City
+<span class="kw">FROM</span> #Customers;</code></pre></div><p>Five rows, one column: Hyderabad appears twice; Chennai and Mumbai once each; one value is NULL. Display order is unspecified.</p>
+<p><strong>15:</strong> These plain SELECT queries read the source without changing its stored rows or columns. They neither guarantee row order nor automatically remove duplicates.</p>
+<div class="section-end"><span>Pause · explain the idea in your own words</span><a href="#top">Back to top ↑</a></div></section>
+<section id="topic-36" class="topic" data-title="Your Day 1 completion checklist"><div class="section-head"><span class="section-number">36</span><div><span class="section-kicker">DAY 01 / LEARN IN ORDER</span><h2>Your Day 1 completion checklist</h2></div></div><p>Mark only what you can demonstrate.</p>
+<ul>
+<li><input disabled="" type="checkbox"> I explain the three forms of data with different examples.</li>
+<li><input disabled="" type="checkbox"> I identify an entity, its attributes and identifier.</li>
+<li><input disabled="" type="checkbox"> I state what one row represents before reasoning about data.</li>
+<li><input disabled="" type="checkbox"> I explain metadata, quality and missingness simply.</li>
+<li><input disabled="" type="checkbox"> I distinguish database, DBMS, RDBMS and SQL.</li>
+<li><input disabled="" type="checkbox"> I explain why relationships and defined constraints help.</li>
+<li><input disabled="" type="checkbox"> I recognize OLTP, analytics and a transaction’s purpose.</li>
+<li><input disabled="" type="checkbox"> I distinguish SQL Server, T-SQL and SSMS.</li>
+<li><input disabled="" type="checkbox"> I trace the simplified query journey.</li>
+<li><input disabled="" type="checkbox"> I run the supplied setup and SELECT queries in SQL Server.</li>
+<li><input disabled="" type="checkbox"> I predict and explain output columns, rows, duplicates and NULL.</li>
+</ul>
+<p><strong>Final explanation:</strong> “I use a client to send T-SQL to SQL Server. The engine manages the database, processes the request, accesses data and returns a result set. My SELECT list determines the output columns.”</p>
+<p><strong>Day 2:</strong> selecting columns and filtering rows with comparisons, AND, OR, parentheses, IN, IS NULL and IS NOT NULL.</p>
+<p>If you have only read the examples or used the HTML simulator, leave the real execution checkpoint incomplete.</p>
+<div class="section-end"><span>Pause · explain the idea in your own words</span><a href="#top">Back to top ↑</a></div></section></main></div><footer><strong>SQL Mastery Notebook</strong><span>Day 01 · Read → predict → execute → explain</span></footer><script>(()=>{
+ 'use strict';
+ const columns=Object.freeze(['CustomerID','CustomerName','City']);
+ const rows=Object.freeze([
+  Object.freeze({CustomerID:1,CustomerName:'Asha',City:'Hyderabad'}),
+  Object.freeze({CustomerID:2,CustomerName:'Ravi',City:'Chennai'}),
+  Object.freeze({CustomerID:3,CustomerName:'Neha',City:'Hyderabad'}),
+  Object.freeze({CustomerID:4,CustomerName:'Omar',City:'Mumbai'}),
+  Object.freeze({CustomerID:5,CustomerName:'Meera',City:null})
+ ]);
+ const phaseInfo=Object.freeze([
+  'Receive: a connected client sends its SQL request to SQL Server. Identity and access rules determine what the request may do.',
+  'Understand: parsing checks the SQL syntax. Binding resolves table and column names and their types. A typo can stop the request here.',
+  'Plan: the engine chooses an execution approach using available metadata and estimates. A suitable cached plan can be reused; fresh optimization is not required for every request.',
+  'Execute: the engine runs the plan and obtains the needed data. It may already be in memory, or storage access may be required. An execution plan is not a stored copy of earlier result rows.',
+  'Return: the engine sends rows and columns back to the client, or reports an error. The client or application formats the response for display.'
+ ]);
+ function validate(selected){if(!Array.isArray(selected)||!selected.length||selected.some(c=>!columns.includes(c))||new Set(selected).size!==selected.length)throw new Error('Choose at least one distinct sample column.');}
+ function projectRows(selected){validate(selected);return rows.map(row=>Object.fromEntries(selected.map(c=>[c,row[c]])));}
+ function formatSql(selected){validate(selected);return `SELECT ${selected.join(', ')}\nFROM #Customers;`;}
+ const dataForms=Object.freeze([
+  Object.freeze({name:'Structured',explanation:'Defined fields organize each customer row. City is categorical data inside a structured record.',content:'CustomerID | CustomerName | City\n1 | Asha | Hyderabad\n2 | Ravi | Chennai'}),
+  Object.freeze({name:'Semi-structured',explanation:'Keys and nesting organize this JSON customer record. Its shape can be flexible and can also be validated against a schema.',content:JSON.stringify({customerId:1,name:'Asha',preferences:{language:'English'}},null,2)}),
+  Object.freeze({name:'Unstructured',explanation:'The review body is free-form main content. It can still be accompanied by structured fields such as an ID, rating and timestamp.',content:'Good product, but the packaging was damaged.\n\nMetadata: CustomerID 1 · Rating 4/5'})
+ ]);
+ function getDataForm(index){if(!Number.isInteger(index)||index<0||index>=dataForms.length)throw new Error('Unknown data form.');return dataForms[index];}
+ globalThis.SQLStudyModel=Object.freeze({columns,rows,phaseInfo,projectRows,formatSql,dataForms,getDataForm});
+ if(typeof document==='undefined')return;
+ const escape=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+ document.querySelectorAll('main table').forEach(t=>{if(!t.parentElement.classList.contains('table-scroll')){const wrap=document.createElement('div');wrap.className='table-scroll';t.before(wrap);wrap.append(t);}});
+ const details=[...document.querySelectorAll('details.answer')];
+ const answerButton=document.getElementById('toggle-answers');
+ function syncAnswers(){answerButton.textContent=details.every(d=>d.open)?'Hide all answers':'Show all answers';}
+ answerButton.addEventListener('click',()=>{const open=details.some(d=>!d.open);details.forEach(d=>d.open=open);syncAnswers();});
+ details.forEach(d=>d.addEventListener('toggle',syncAnswers));
+ document.getElementById('print-notes').addEventListener('click',()=>window.print());
+ let printState=[];
+ window.addEventListener('beforeprint',()=>{printState=details.map(d=>[d,d.open]);details.forEach(d=>d.open=true);});
+ window.addEventListener('afterprint',()=>{printState.forEach(([d,open])=>d.open=open);printState=[];syncAnswers();});
+ document.querySelectorAll('.copy-code').forEach(b=>b.addEventListener('click',async()=>{const code=b.closest('.code-panel').querySelector('code');try{await navigator.clipboard.writeText(code.textContent);b.textContent='Copied';}catch{b.textContent='Select to copy';const range=document.createRange();range.selectNodeContents(code);const selection=window.getSelection();selection.removeAllRanges();selection.addRange(range);}setTimeout(()=>b.textContent='Copy',1800);}));
+ const search=document.getElementById('topic-search');
+ search.addEventListener('input',()=>{const term=search.value.toLowerCase().trim();document.querySelectorAll('[data-topic-link]').forEach(a=>a.hidden=!a.textContent.toLowerCase().includes(term));});
+ const checklist=[];
+ document.querySelectorAll('main li').forEach(li=>{const original=li.querySelector('input[type=checkbox][disabled]');if(!original&&!/^\[ \] /.test(li.textContent))return;if(original)original.remove();else li.innerHTML=li.innerHTML.replace(/^\[ \] /,'');const label=document.createElement('label');label.className='check-row';const text=document.createElement('span');text.innerHTML=li.innerHTML;const box=document.createElement('input');box.type='checkbox';box.dataset.studyCheck='true';const key=`sql-notebook-day1-clear:check:${checklist.length}`;try{box.checked=localStorage.getItem(key)==='true';}catch{}box.addEventListener('change',()=>{try{localStorage.setItem(key,String(box.checked));}catch{}updateProgress();});label.append(box,text);li.textContent='';li.append(label);checklist.push({box,key});});
+ function updateProgress(){const done=checklist.filter(x=>x.box.checked).length;document.getElementById('progress-text').textContent=`${done} / ${checklist.length} completed`;const progress=document.getElementById('study-progress');progress.max=checklist.length||1;progress.value=done;}
+ document.getElementById('reset-progress').addEventListener('click',()=>{checklist.forEach(({box,key})=>{box.checked=false;try{localStorage.removeItem(key);}catch{}});updateProgress();});updateProgress();
+ const selected=()=>[...document.querySelectorAll('#projection-lab input[name=column]:checked')].map(x=>x.value);
+ const run=document.getElementById('run-demo');const status=document.getElementById('demo-status');
+ function updateQuery(){const cols=selected();run.disabled=!cols.length;document.getElementById('demo-sql').textContent=cols.length?formatSql(cols):'Choose at least one column.';document.getElementById('demo-result').textContent='';status.textContent=cols.length?'Predict the columns and row count, then show the result.':'No columns selected. Choose a column to continue.';}
+ function runDemo(){const cols=selected();if(!cols.length)return;const projected=projectRows(cols);document.getElementById('demo-result').innerHTML=`<table><caption>Projected sample rows — local teaching demo</caption><thead><tr>${cols.map(c=>`<th scope="col">${escape(c)}</th>`).join('')}</tr></thead><tbody>${projected.map(r=>`<tr>${cols.map(c=>`<td>${r[c]===null?'<span class="null-value">NULL</span>':escape(r[c])}</td>`).join('')}</tr>`).join('')}</tbody></table>`;status.textContent=`${projected.length} rows · ${cols.length} column${cols.length===1?'':'s'} · source data unchanged`;}
+ document.querySelectorAll('#projection-lab input[name=column]').forEach(b=>b.addEventListener('change',updateQuery));run.addEventListener('click',runDemo);updateQuery();
+ let phase=0;const phaseButtons=[...document.querySelectorAll('[data-phase]')];
+ function showPhase(n){phase=Math.max(0,Math.min(phaseInfo.length-1,n));phaseButtons.forEach((b,i)=>b.setAttribute('aria-pressed',String(i===phase)));document.getElementById('phase-detail').textContent=phaseInfo[phase];document.getElementById('phase-prev').disabled=phase===0;document.getElementById('phase-next').disabled=phase===phaseInfo.length-1;}
+ phaseButtons.forEach(b=>b.addEventListener('click',()=>showPhase(Number(b.dataset.phase))));document.getElementById('phase-prev').addEventListener('click',()=>showPhase(phase-1));document.getElementById('phase-next').addEventListener('click',()=>showPhase(phase+1));showPhase(0);
+ const formTabs=[...document.querySelectorAll('[data-form]')];
+ function showDataForm(index){const item=getDataForm(index);formTabs.forEach((b,i)=>{b.setAttribute('aria-selected',String(i===index));b.setAttribute('tabindex',i===index?'0':'-1');});const panel=document.getElementById('data-form-panel');panel.setAttribute('aria-labelledby',`form-tab-${index}`);panel.innerHTML=`<p>${escape(item.explanation)}</p><div class="code-panel"><pre><code>${escape(item.content)}</code></pre></div>`;}
+ formTabs.forEach((b,i)=>{b.addEventListener('click',()=>showDataForm(i));b.addEventListener('keydown',e=>{let next;if(e.key==='ArrowRight')next=(i+1)%formTabs.length;else if(e.key==='ArrowLeft')next=(i+formTabs.length-1)%formTabs.length;else if(e.key==='Home')next=0;else if(e.key==='End')next=formTabs.length-1;else return;e.preventDefault();showDataForm(next);formTabs[next].focus();});});if(formTabs.length)showDataForm(0);
+ if('IntersectionObserver' in window){const observer=new IntersectionObserver(entries=>{for(const e of entries){if(!e.isIntersecting)continue;document.querySelectorAll('[data-topic-link]').forEach(a=>a.classList.toggle('active',a.getAttribute('href')===`#${e.target.id}`));}},{rootMargin:'-10% 0px -70% 0px',threshold:0});document.querySelectorAll('main section').forEach(s=>observer.observe(s));}
+})();
+
+(()=>{
+ const cards=[["Database, DBMS, RDBMS and SQL?", "Database is the collection; DBMS manages it; RDBMS follows a relational model; SQL expresses requests."], ["Structured, semi-structured and unstructured: give examples.", "Bank transaction table: defined fields. JSON order: keys and nesting. Support-call audio: free-form main content. A review can have structured metadata alongside free-form text."], ["What is grain?", "What one record represents. Counting order-item rows does not automatically count orders."], ["Do complete fields prove data is accurate?", "No. Completeness asks whether required facts are present; accuracy asks whether they match reality."], ["What are the four ACID ideas?", "Atomicity: a unit succeeds or fails together. Consistency: defined rules hold. Isolation: coordinated concurrent interactions. Durability: committed data survives supported recovery."], ["SQL Server versus SSMS?", "SQL Server is the database engine. SSMS is a client for sending requests and viewing results."], ["What does declarative mean?", "Describe the requested result rather than every physical access step; the engine chooses a plan."], ["Parse versus bind?", "Parsing checks syntax; binding resolves object and column names."], ["Does a cached plan mean cached results?", "No. A cached plan describes how to perform work; result production is separate."], ["NULL, zero and empty string?", "NULL marks no known value; zero is a known number; empty string is recorded text with zero characters."], ["What does SELECT CustomerName return in our lab?", "One output column and five rows. It does not change the source, remove duplicates automatically, or guarantee row order."], ["What is a foreign key for?", "A defined foreign-key constraint enforces allowed references to keys. Matching column names alone do not enforce a relationship."]];
+ globalThis.Day1Recall=Object.freeze({cards:Object.freeze(cards.map(c=>Object.freeze(c)))});
+ if(typeof document==='undefined')return;
+ const question=document.getElementById('recall-question');let current=0;
+ const answer=document.getElementById('recall-answer'),reveal=document.getElementById('recall-reveal');
+ function showCard(){document.getElementById('recall-count').textContent=`Card ${current+1} / ${cards.length}`;question.textContent=cards[current][0];answer.textContent=cards[current][1];answer.hidden=true;reveal.setAttribute('aria-expanded','false');reveal.textContent='Reveal explanation';}
+ reveal.addEventListener('click',()=>{answer.hidden=!answer.hidden;reveal.setAttribute('aria-expanded',String(!answer.hidden));reveal.textContent=answer.hidden?'Reveal explanation':'Hide explanation';});
+ document.getElementById('recall-next').addEventListener('click',()=>{current=(current+1)%cards.length;showCard();});
+ document.getElementById('recall-prev').addEventListener('click',()=>{current=(current+cards.length-1)%cards.length;showCard();});showCard();
+})();
+</script></body></html>
