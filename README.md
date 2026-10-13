@@ -130,6 +130,11 @@ The focus is **T-SQL for Microsoft SQL Server**. Syntax and behavior may differ 
 ### Learn with curiosity. Practise with purpose.
 
 **One chapter at a time. One clearer explanation at a time.**
+## 📚 Chapters
+
+| Chapter | Topic | Notes |
+| --- | --- | --- |
+| Day 1 | SQL Foundations | [📂 Open chapter](01-sql-foundations/) |
 
 [⬆ Back to the top](#-sql-foundations-to-mastery)
 
